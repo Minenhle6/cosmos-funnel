@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minenhle Langa | The Architecture of the Ancestors</title>
+    <title>Minenhle Langa — Cosmological Architecture</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=DM+Mono:wght@300;400&family=Inter:wght@200;400;600&display=swap" rel="stylesheet">
     <style>
-        /* CSS Variables for Premium Dark Mode */
         :root {
-            --bg-color: #0a0a0a;
-            --text-main: #ededed;
-            --text-muted: #888888;
-            --accent-gold: #D4AF37;
-            --accent-violet: #8A2BE2;
-            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --bg: #050505;
+            --text: #f5f5f7;
+            --muted: #86868b;
+            --accent: #9d4edd;
+            --dim-gold: #b5a075;
+            --border: rgba(255, 255, 255, 0.08);
         }
 
-        /* Reset & Base Styles */
         * {
             margin: 0;
             padding: 0;
@@ -23,160 +24,221 @@
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: var(--font-main);
-            line-height: 1.6;
-            overflow-x: hidden;
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            letter-spacing: -0.01em;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Typography */
+        /* Technical Grid Overlay Background */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(to right, rgba(255,255,255,0.01) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.01) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        header, main, section, footer {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Typography Definitions */
+        .mono {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--dim-gold);
+        }
+
         h1, h2, h3 {
-            font-weight: 300;
-            letter-spacing: -0.02em;
-            margin-bottom: 1rem;
+            font-family: 'Cinzel', serif;
+            font-weight: 400;
+            letter-spacing: 0.03em;
         }
 
         h1 {
-            font-size: clamp(2.5rem, 5vw, 5rem);
+            font-size: clamp(2rem, 6vw, 4.5rem);
             line-height: 1.1;
-            background: linear-gradient(to right, var(--text-main), var(--text-muted));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        h2 { font-size: clamp(2rem, 3vw, 3rem); }
-        
-        p {
-            font-size: 1.1rem;
-            color: var(--text-muted);
+            margin-top: 1.5rem;
             margin-bottom: 2rem;
-            max-width: 600px;
         }
 
-        .highlight-gold { color: var(--accent-gold); font-weight: 400; }
-        .highlight-violet { color: var(--accent-violet); font-weight: 400; }
+        h2 {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
 
-        /* Layout & Sections */
-        section {
-            padding: 6rem 2rem;
-            max-width: 1200px;
+        p {
+            color: var(--muted);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            max-width: 38rem;
+        }
+
+        p strong {
+            color: var(--text);
+            font-weight: 400;
+        }
+
+        /* Layout Architecture */
+        .container {
+            max-width: 1400px;
             margin: 0 auto;
+            padding: 2rem;
         }
 
-        .hero {
-            min-height: 100vh;
+        .hero-section {
+            min-height: 90vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid var(--border);
+            padding-top: 4rem;
         }
 
-        .grid {
+        .editorial-grid {
             display: grid;
             grid-template-columns: 1fr;
             gap: 4rem;
+            padding: 6rem 0;
+            border-bottom: 1px solid var(--border);
         }
 
-        @media (min-width: 768px) {
-            .grid { grid-template-columns: 1fr 1fr; }
+        @media (min-width: 992px) {
+            .editorial-grid {
+                grid-template-columns: 1fr 1.5fr;
+            }
+            .sticky-col {
+                position: sticky;
+                top: 4rem;
+                height: max-content;
+            }
         }
 
-        /* Buttons / CTAs */
-        .btn {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            font-size: 1rem;
+        /* Conceptual Info Blocks */
+        .data-card {
+            border-left: 2px solid var(--border);
+            padding-left: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .data-card:hover {
+            border-left-color: var(--accent);
+            transition: border-color 0.4s ease;
+        }
+
+        /* Refined Interactive Elements */
+        .action-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--text);
             text-decoration: none;
+            font-family: 'DM Mono', monospace;
+            font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            border: 1px solid var(--accent-gold);
-            color: var(--accent-gold);
-            background: transparent;
+            margin-top: 1rem;
+            padding-bottom: 0.25rem;
+            border-bottom: 1px solid var(--dim-gold);
             transition: all 0.3s ease;
-            cursor: pointer;
         }
 
-        .btn:hover {
-            background: var(--accent-gold);
-            color: var(--bg-color);
+        .action-link:hover {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+            padding-left: 0.5rem;
         }
 
-        .btn-violet {
-            border-color: var(--accent-violet);
-            color: var(--accent-violet);
-        }
-
-        .btn-violet:hover {
-            background: var(--accent-violet);
-            color: var(--bg-color);
-        }
-
-        /* Pricing/Funnel Cards */
-        .card {
-            background: #111;
-            padding: 3rem 2rem;
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-gold);
-        }
-
-        .price {
-            font-size: 2.5rem;
-            color: var(--text-main);
-            margin-bottom: 1rem;
+        .footer-brand {
+            padding: 4rem 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
         }
 
     </style>
 </head>
 <body>
 
-    <section class="hero">
-        <p class="highlight-violet">A Transmission by Minenhle Langa</p>
-        <h1>The Architecture of the Ancestors.<br>The Frequencies of the Cosmos.</h1>
-        <p>Decoding the spiritual physics of the universe—from South African soil to the electromagnetic fabric of reality. You are not just a body; you are a mathematical resonance.</p>
-        <div>
-            <a href="#offers" class="btn">Enter the Frequency</a>
-        </div>
-    </section>
+    <main class="container">
+        
+        <section class="hero-section">
+            <div class="mono">// ORIGIN PROTOCOL</div>
+            <h1>From Ancestral Soil to Cosmic Radiance.</h1>
+            <p>Reality is not an accident. It is an organized mathematical resonance cascading across light, geometry, and the deep frequencies of human consciousness.</p>
+            <div>
+                <a href="#treatise" class="action-link">Examine the Architecture &rarr;</a>
+            </div>
+        </section>
 
-    <section class="grid">
-        <div>
-            <h2>Bridging the Seen and Unseen.</h2>
-            <p>I am Minenhle Langa. A professional educator armed with a Degree in Education, Honours, and a Psychology diploma. But titles only measure the material.</p>
-            <p>I am a spiritually led guide translating the infinite into the actionable. I don't just teach the history and psychology of humanity; I decode the blueprints of how we got here.</p>
-        </div>
-        <div>
-            <p><strong class="highlight-gold">The Root:</strong> Understanding the deep history and geography of KwaZulu-Natal reveals the unseen forces that have always governed the land.</p>
-            <p><strong class="highlight-violet">The Code:</strong> Ancestral intuition perfectly mirrors quantum mechanics. Consciousness expands outward, anchored by the Golden Ratio (&Phi;) and the vibrational resonance of Vortex Math.</p>
-            <p><strong class="highlight-gold">The Spectrum:</strong> Human spirituality is simply the conscious tuning of biological frequencies, where energy and light interact at a quantum level across the electromagnetic spectrum.</p>
-        </div>
-    </section>
-
-    <section id="offers">
-        <h2 style="text-align: center; margin-bottom: 3rem;">Align Your Frequency. Expand Your Reality.</h2>
-        <div class="grid">
+        <section id="treatise" class="editorial-grid">
             
-            <div class="card">
-                <h3 class="highlight-violet">The Cosmological Curriculum</h3>
-                <div class="price">$197</div>
-                <p>A masterclass video series breaking down the psychology of the self, mapped against the electromagnetic spectrum and Vortex Math. Bridge the gap between mind and cosmos.</p>
-                <a href="#" class="btn btn-violet" style="width: 100%; text-align: center;">Unlock Masterclass</a>
+            <div class="sticky-col">
+                <div class="mono">// THE CUSTODIAN</div>
+                <h2>Minenhle Langa</h2>
+                <p><strong>Bridging empirical psychology and cosmic order.</strong> Holding academic foundations in Education, Honours, and psychological frameworking, operating as a spiritually led translator of unmanifest physics.</p>
+                <p>This is not a space for modern commercialism. It is a systematic synthesis of ancient architecture and modern quantum realities.</p>
+                <div>
+                    <a href="mailto:your-email@domain.com" class="action-link">Initiate Consultation</a>
+                </div>
             </div>
 
-            <div class="card" style="border-color: rgba(212, 175, 55, 0.3);">
-                <h3 class="highlight-gold">The Inner Circle</h3>
-                <div class="price">$1,500</div>
-                <p>Private, spiritually-led psychological and educational consulting. Bespoke spiritual architecture for high-performers, combining my academic background with esoteric mastery.</p>
-                <a href="#" class="btn" style="width: 100%; text-align: center;">Apply for 1-on-1</a>
-            </div>
+            <div>
+                <div class="data-card">
+                    <div class="mono">01 / THE SOUTHERN ROOT</div>
+                    <h3>Ancestral Resonances</h3>
+                    <p>True cosmology is local before it is universal. The ancient spiritual currents of South Africa exist as the primordial matrix of human awareness. Our ancestors did not speak in abstract mythology; they engineered precise methodologies to tap directly into the planetary grid, understanding intuitively that the geometry of the land dictates the stabilization of human consciousness.</p>
+                </div>
 
-        </div>
-    </section>
+                <div class="data-card">
+                    <div class="mono">02 / THE UNIVERSAL RATIO</div>
+                    <h3>The Phi Convergence</h3>
+                    <p>The movement of consciousness from a singular point into the vast expanse of the cosmos obeys an immutable geometric law. This scaling factor is defined by the Golden Ratio:</p>
+                    <p style="color: var(--text); font-family: 'DM Mono', monospace; font-size: 1.2rem; padding: 1rem 0;">
+                        Φ = (1 + √5) / 2
+                    </p>
+                    <p>From the microscopic structural orientation of our DNA to the sweeping trajectories of galactic clusters, existence mirrors this exact spiral. True psychological integration occurs when the individual aligns their core cognitive patterns back to this fundamental universal frequency.</p>
+                </div>
+
+                <div class="data-card">
+                    <div class="mono">03 / THE MATHEMATICAL AXIS</div>
+                    <h3>The 11/2 Master Matrix</h3>
+                    <p>When you strip away physical illusion, reality reveals its numerical bedrock. Utilizing the rigorous addition laws of Vortex Math, we unlock the digital root structures that govern energy flow. The absolute center of this evolutionary trajectory rests upon the Master Number 11/2—the vibrational bridge where raw cosmic impulse translates directly into conscious, split psychological reality.</p>
+                </div>
+
+                <div class="data-card">
+                    <div class="mono">04 / THE RADIATION MATRIX</div>
+                    <h3>The Electromagnetic Spectrum</h3>
+                    <p>Spirituality is simply undetected physics. What we define as the ethereal or unseen soul operates entirely within the vast, continuous architecture of the electromagnetic spectrum. Every cognitive shift, traumatic block, or peak state of ancestral communion is an literal shift in electromagnetic frequency:</p>
+                    <p style="color: var(--text); font-family: 'DM Mono', monospace; font-size: 1.2rem; padding: 1rem 0;">
+                        E = hν
+                    </p>
+                    <p>Energy and frequency are completely inseparable. By viewing human psychology through this quantum lens, we systematically transcend base societal conditioning, tuning the human nervous system to operate as a high-fidelity receptor for universal data.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <footer class="footer-brand">
+            <div class="mono">// SYLLABUS ENGAGEMENT</div>
+            <p style="margin: 0;">To engage with current research collections, clinical psychological applications, or collaborative cosmological mappings, submit a formal inquiry.</p>
+            <div>
+                <a href="mailto:your-email@domain.com" class="action-link">Open Communication Channels &rarr;</a>
+            </div>
+        </footer>
+
+    </main>
 
 </body>
-  </html>
+</html>
