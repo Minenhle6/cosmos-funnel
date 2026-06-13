@@ -1,244 +1,2118 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minenhle Langa — Cosmological Architecture</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=DM+Mono:wght@300;400&family=Inter:wght@200;400;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg: #050505;
-            --text: #f5f5f7;
-            --muted: #86868b;
-            --accent: #9d4edd;
-            --dim-gold: #b5a075;
-            --border: rgba(255, 255, 255, 0.08);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Langa Institute — Consciousness & Cosmological Theory</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --void: #06060f;
+    --deep: #0d0d20;
+    --cosmos: #12122e;
+    --indigo: #1e1e4a;
+    --gold: #c9a84c;
+    --gold-dim: rgba(201,168,76,0.15);
+    --gold-mid: rgba(201,168,76,0.4);
+    --purple: #6b4f8a;
+    --white: #f0f0ff;
+    --muted: rgba(240,240,255,0.45);
+    --faint: rgba(240,240,255,0.12);
+    --border: rgba(201,168,76,0.2);
+  }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: 'Inter', sans-serif;
-            line-height: 1.7;
-            letter-spacing: -0.01em;
-            -webkit-font-smoothing: antialiased;
-        }
+  html { scroll-behavior: smooth; }
 
-        /* Technical Grid Overlay Background */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: 
-                linear-gradient(to right, rgba(255,255,255,0.01) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255,255,255,0.01) 1px, transparent 1px);
-            background-size: 60px 60px;
-            pointer-events: none;
-            z-index: 0;
-        }
+  body {
+    background: var(--void);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    line-height: 1.7;
+  }
 
-        header, main, section, footer {
-            position: relative;
-            z-index: 1;
-        }
+  /* === CANVAS === */
+  #cosmos-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
 
-        /* Typography Definitions */
-        .mono {
-            font-family: 'DM Mono', monospace;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--dim-gold);
-        }
+  /* === NAVIGATION === */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.4rem 3rem;
+    background: rgba(6,6,15,0.8);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
 
-        h1, h2, h3 {
-            font-family: 'Cinzel', serif;
-            font-weight: 400;
-            letter-spacing: 0.03em;
-        }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+    text-decoration: none;
+  }
 
-        h1 {
-            font-size: clamp(2rem, 6vw, 4.5rem);
-            line-height: 1.1;
-            margin-top: 1.5rem;
-            margin-bottom: 2rem;
-        }
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
 
-        h2 {
-            font-size: clamp(1.8rem, 4vw, 2.8rem);
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
-            color: var(--text);
-        }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
 
-        p {
-            color: var(--muted);
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-            max-width: 38rem;
-        }
+  .nav-links a:hover { color: var(--gold); }
 
-        p strong {
-            color: var(--text);
-            font-weight: 400;
-        }
+  .nav-cta {
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 0.5rem 1.4rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+  }
 
-        /* Layout Architecture */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
+  .nav-cta:hover {
+    background: var(--gold);
+    color: var(--void);
+  }
 
-        .hero-section {
-            min-height: 90vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            border-bottom: 1px solid var(--border);
-            padding-top: 4rem;
-        }
+  /* === SECTIONS === */
+  section { position: relative; z-index: 1; }
 
-        .editorial-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 4rem;
-            padding: 6rem 0;
-            border-bottom: 1px solid var(--border);
-        }
+  /* === HERO === */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 8rem 2rem 4rem;
+  }
 
-        @media (min-width: 992px) {
-            .editorial-grid {
-                grid-template-columns: 1fr 1.5fr;
-            }
-            .sticky-col {
-                position: sticky;
-                top: 4rem;
-                height: max-content;
-            }
-        }
+  .hero-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    opacity: 0.8;
+  }
 
-        /* Conceptual Info Blocks */
-        .data-card {
-            border-left: 2px solid var(--border);
-            padding-left: 2rem;
-            margin-bottom: 4rem;
-        }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.2rem, 8vw, 7.5rem);
+    font-weight: 300;
+    line-height: 1.02;
+    letter-spacing: -0.01em;
+    max-width: 900px;
+    margin-bottom: 1.5rem;
+  }
 
-        .data-card:hover {
-            border-left-color: var(--accent);
-            transition: border-color 0.4s ease;
-        }
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
 
-        /* Refined Interactive Elements */
-        .action-link {
-            display: inline-flex;
-            align-items: center;
-            color: var(--text);
-            text-decoration: none;
-            font-family: 'DM Mono', monospace;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-top: 1rem;
-            padding-bottom: 0.25rem;
-            border-bottom: 1px solid var(--dim-gold);
-            transition: all 0.3s ease;
-        }
+  .hero-sub {
+    font-size: 1rem;
+    color: var(--muted);
+    max-width: 520px;
+    margin-bottom: 3.5rem;
+    line-height: 1.9;
+  }
 
-        .action-link:hover {
-            color: var(--accent);
-            border-bottom-color: var(--accent);
-            padding-left: 0.5rem;
-        }
+  .hero-buttons {
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 
-        .footer-brand {
-            padding: 4rem 0;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--void);
+    border: none;
+    padding: 0.9rem 2.2rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-block;
+  }
 
-    </style>
+  .btn-primary:hover { background: #e0bb5e; transform: translateY(-1px); }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--white);
+    border: 1px solid var(--faint);
+    padding: 0.9rem 2.2rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--muted);
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  /* === DIVIDER === */
+  .gold-divider {
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+    margin: 0 auto;
+    opacity: 0.6;
+  }
+
+  /* === MANIFESTO STRIP === */
+  #manifesto {
+    padding: 5rem 2rem;
+    text-align: center;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(to bottom, var(--deep), var(--void));
+  }
+
+  .manifesto-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.4rem, 3vw, 2.4rem);
+    font-weight: 300;
+    font-style: italic;
+    max-width: 820px;
+    margin: 0 auto 1rem;
+    line-height: 1.6;
+    color: rgba(240,240,255,0.85);
+  }
+
+  .manifesto-attr {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  /* === THEORIES SHELF === */
+  #theories {
+    padding: 7rem 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 3.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .theories-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+
+  .theory-card {
+    background: var(--deep);
+    border: 1px solid var(--border);
+    padding: 3.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.4s;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    color: inherit;
+  }
+
+  .theory-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(to right, var(--gold), var(--purple));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s ease;
+  }
+
+  .theory-card:hover::before { transform: scaleX(1); }
+  .theory-card:hover { border-color: rgba(201,168,76,0.5); }
+
+  .theory-number {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    opacity: 0.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .theory-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.1rem;
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+  }
+
+  .theory-subtitle {
+    font-size: 0.8rem;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    opacity: 0.8;
+  }
+
+  .theory-desc {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.9;
+    margin-bottom: 2rem;
+  }
+
+  .theory-meta {
+    display: flex;
+    gap: 2rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+  }
+
+  .theory-meta span { color: var(--gold); }
+
+  .theory-read-btn {
+    margin-top: 2rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    transition: gap 0.3s;
+  }
+
+  .theory-card:hover .theory-read-btn { gap: 1rem; }
+
+  /* === PUBLICATIONS SHELF === */
+  #publications {
+    padding: 7rem 3rem;
+    background: var(--deep);
+    border-top: 1px solid var(--border);
+  }
+
+  .pub-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .pub-filters {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    background: transparent;
+    border: 1px solid var(--faint);
+    color: var(--muted);
+    padding: 0.45rem 1.1rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .filter-btn.active, .filter-btn:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: var(--gold-dim);
+  }
+
+  .pub-shelf {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .pub-item {
+    border: 1px solid var(--border);
+    padding: 2rem;
+    background: var(--cosmos);
+    transition: all 0.3s;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .pub-item:hover {
+    border-color: var(--gold-mid);
+    transform: translateY(-3px);
+  }
+
+  .pub-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--purple);
+    margin-bottom: 1rem;
+    background: rgba(107,79,138,0.15);
+    display: inline-block;
+    padding: 0.25rem 0.6rem;
+  }
+
+  .pub-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    line-height: 1.35;
+    margin-bottom: 0.75rem;
+    font-weight: 400;
+  }
+
+  .pub-excerpt {
+    font-size: 0.78rem;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+
+  .pub-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.58rem;
+    color: var(--muted);
+    border-top: 1px solid var(--faint);
+    padding-top: 1rem;
+  }
+
+  .pub-pages { color: var(--gold); }
+
+  .pub-lock {
+    width: 14px;
+    height: 14px;
+    opacity: 0.4;
+  }
+
+  /* === SOUL GAMES === */
+  #soul-games {
+    padding: 7rem 3rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .games-intro {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-style: italic;
+    color: var(--muted);
+    max-width: 600px;
+    margin: 1.5rem auto 4rem;
+    line-height: 1.7;
+  }
+
+  .games-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    text-align: left;
+  }
+
+  .game-card {
+    background: var(--cosmos);
+    border: 1px solid var(--border);
+    padding: 2.5rem 2rem;
+    transition: all 0.4s;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .game-card:hover {
+    border-color: var(--purple);
+    background: rgba(107,79,138,0.1);
+  }
+
+  .game-icon {
+    font-size: 2rem;
+    margin-bottom: 1.2rem;
+    display: block;
+  }
+
+  .game-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    font-weight: 400;
+  }
+
+  .game-desc {
+    font-size: 0.78rem;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+
+  .game-play-btn {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--purple);
+    background: none;
+    border: 1px solid var(--purple);
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    width: 100%;
+  }
+
+  .game-play-btn:hover {
+    background: var(--purple);
+    color: var(--white);
+  }
+
+  /* === GAME MODAL === */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(6,6,15,0.95);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+  }
+
+  .modal-overlay.active { display: flex; }
+
+  .modal-box {
+    background: var(--deep);
+    border: 1px solid var(--gold-mid);
+    max-width: 600px;
+    width: 90%;
+    padding: 3rem;
+    position: relative;
+    max-height: 85vh;
+    overflow-y: auto;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 1.2rem; right: 1.5rem;
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+
+  .modal-close:hover { color: var(--gold); }
+
+  .modal-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    font-weight: 400;
+  }
+
+  .modal-sub {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-bottom: 2rem;
+    letter-spacing: 0.1em;
+  }
+
+  #game-content {
+    min-height: 200px;
+  }
+
+  .game-question {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-style: italic;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    color: var(--white);
+  }
+
+  .game-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .game-option {
+    background: var(--cosmos);
+    border: 1px solid var(--faint);
+    color: var(--white);
+    padding: 0.9rem 1.4rem;
+    text-align: left;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .game-option:hover {
+    border-color: var(--gold);
+    background: var(--gold-dim);
+    color: var(--gold);
+  }
+
+  .game-reflection {
+    background: var(--gold-dim);
+    border-left: 2px solid var(--gold);
+    padding: 1.2rem 1.5rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    line-height: 1.7;
+    display: none;
+  }
+
+  .game-next-btn {
+    margin-top: 1.5rem;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 0.7rem 1.6rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: none;
+  }
+
+  .game-next-btn:hover { background: var(--gold); color: var(--void); }
+
+  /* === ABOUT THE AUTHOR === */
+  #author {
+    padding: 7rem 3rem;
+    background: var(--deep);
+    border-top: 1px solid var(--border);
+  }
+
+  .author-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  .author-left {
+    position: sticky;
+    top: 120px;
+  }
+
+  .author-monogram {
+    width: 90px;
+    height: 90px;
+    border: 1px solid var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+
+  .author-monogram span {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    color: var(--gold);
+    font-weight: 300;
+  }
+
+  .author-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 300;
+    margin-bottom: 0.3rem;
+  }
+
+  .author-title-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    opacity: 0.7;
+  }
+
+  .author-bio {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.9;
+  }
+
+  .author-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    margin-top: 2.5rem;
+  }
+
+  .author-stat {
+    display: flex;
+    align-items: baseline;
+    gap: 0.8rem;
+    padding-bottom: 1.2rem;
+    border-bottom: 1px solid var(--faint);
+  }
+
+  .author-stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    color: var(--gold);
+    font-weight: 300;
+    line-height: 1;
+  }
+
+  .author-stat-label {
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+
+  .author-right h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.9rem;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+  }
+
+  .author-right p {
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.95;
+    margin-bottom: 1.3rem;
+  }
+
+  .author-right p strong {
+    color: var(--gold);
+    font-weight: 400;
+  }
+
+  /* === MEMBERSHIP === */
+  #membership {
+    padding: 8rem 3rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .membership-intro {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--muted);
+    max-width: 500px;
+    margin: 1.5rem auto 4rem;
+  }
+
+  .plans-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-bottom: 3rem;
+  }
+
+  .plan {
+    background: var(--deep);
+    padding: 3rem 2.5rem;
+    position: relative;
+  }
+
+  .plan.featured {
+    background: var(--cosmos);
+  }
+
+  .plan.featured::before {
+    content: 'Most Chosen';
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gold);
+    color: var(--void);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.3rem 1rem;
+  }
+
+  .plan-name {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
+  .plan-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.2rem;
+    font-weight: 300;
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+
+  .plan-price sup {
+    font-size: 1.2rem;
+    vertical-align: super;
+  }
+
+  .plan-period {
+    font-size: 0.72rem;
+    color: var(--muted);
+    margin-bottom: 2.5rem;
+  }
+
+  .plan-features {
+    list-style: none;
+    text-align: left;
+    margin-bottom: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+
+  .plan-features li {
+    font-size: 0.8rem;
+    color: var(--muted);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    line-height: 1.5;
+  }
+
+  .plan-features li::before {
+    content: '—';
+    color: var(--gold);
+    flex-shrink: 0;
+    opacity: 0.6;
+  }
+
+  .plan-features li.active {
+    color: var(--white);
+  }
+
+  .plan-features li.active::before {
+    content: '✦';
+    color: var(--gold);
+    opacity: 1;
+  }
+
+  .plan-btn {
+    width: 100%;
+    padding: 0.85rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+    background: transparent;
+    border: 1px solid var(--faint);
+    color: var(--muted);
+  }
+
+  .plan.featured .plan-btn {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--void);
+    font-weight: 500;
+  }
+
+  .plan-btn:hover { opacity: 0.8; transform: translateY(-1px); }
+
+  /* === NEWSLETTER === */
+  #newsletter {
+    padding: 6rem 3rem;
+    background: var(--deep);
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+
+  .newsletter-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 300;
+    margin-bottom: 1rem;
+  }
+
+  .newsletter-sub {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 2.5rem;
+  }
+
+  .newsletter-form {
+    display: flex;
+    gap: 0;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .newsletter-input {
+    flex: 1;
+    background: var(--cosmos);
+    border: 1px solid var(--border);
+    border-right: none;
+    color: var(--white);
+    padding: 0.9rem 1.4rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.82rem;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+
+  .newsletter-input:focus { border-color: var(--gold-mid); }
+  .newsletter-input::placeholder { color: var(--muted); }
+
+  .newsletter-submit {
+    background: var(--gold);
+    border: none;
+    color: var(--void);
+    padding: 0.9rem 1.8rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .newsletter-submit:hover { background: #e0bb5e; }
+
+  .newsletter-note {
+    font-size: 0.68rem;
+    color: rgba(240,240,255,0.25);
+    margin-top: 1rem;
+  }
+
+  /* === FOOTER === */
+  footer {
+    padding: 4rem 3rem 2rem;
+    border-top: 1px solid var(--border);
+    position: relative;
+    z-index: 1;
+  }
+
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 4rem;
+    margin-bottom: 4rem;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid var(--faint);
+  }
+
+  .footer-brand p {
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.9;
+    margin-top: 1rem;
+    max-width: 280px;
+  }
+
+  .footer-col h4 {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    opacity: 0.7;
+  }
+
+  .footer-col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .footer-col ul li a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.8rem;
+    transition: color 0.3s;
+  }
+
+  .footer-col ul li a:hover { color: var(--gold); }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-copy {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.58rem;
+    color: rgba(240,240,255,0.2);
+    letter-spacing: 0.1em;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .footer-links a {
+    font-size: 0.7rem;
+    color: rgba(240,240,255,0.25);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .footer-links a:hover { color: var(--gold); }
+
+  /* === PAPER MODAL === */
+  #paper-modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(6,6,15,0.97);
+    z-index: 1000;
+    overflow-y: auto;
+  }
+
+  #paper-modal.active { display: block; }
+
+  .paper-modal-inner {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+  }
+
+  .paper-close-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .paper-journal-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  .paper-close-btn {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 0.5rem 1.2rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .paper-close-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+  .paper-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .paper-category {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.3em;
+    color: var(--purple);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  .paper-main-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 1.2rem;
+  }
+
+  .paper-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--muted);
+    margin-bottom: 2rem;
+  }
+
+  .paper-author-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+
+  .paper-author-name {
+    color: var(--gold);
+  }
+
+  .paper-body {
+    font-size: 0.92rem;
+    line-height: 2.0;
+    color: rgba(240,240,255,0.82);
+  }
+
+  .paper-body h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    margin: 3rem 0 1.2rem;
+    color: var(--white);
+    padding-top: 1rem;
+    border-top: 1px solid var(--faint);
+  }
+
+  .paper-body h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--gold);
+    margin: 2rem 0 0.8rem;
+  }
+
+  .paper-body p {
+    margin-bottom: 1.2rem;
+  }
+
+  .paper-body .abstract-box {
+    background: var(--cosmos);
+    border-left: 2px solid var(--gold);
+    padding: 1.5rem 2rem;
+    margin: 2rem 0;
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    line-height: 1.9;
+  }
+
+  .paper-body .pullquote {
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-style: italic;
+    color: var(--gold);
+    padding: 2.5rem 1rem;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    margin: 3rem 0;
+    line-height: 1.5;
+  }
+
+  .paper-body .footnote {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--muted);
+    border-top: 1px solid var(--faint);
+    padding-top: 1rem;
+    margin-top: 3rem;
+  }
+
+  .paper-blur-gate {
+    position: relative;
+    margin-top: 2rem;
+  }
+
+  .paper-blur-gate .blurred-text {
+    filter: blur(5px);
+    user-select: none;
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 2;
+  }
+
+  .blur-overlay {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    top: 0;
+    background: linear-gradient(to bottom, transparent 0%, var(--void) 60%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: 3rem;
+    gap: 1rem;
+  }
+
+  .blur-overlay p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  /* === RESPONSIVE === */
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 1.5rem; }
+    .nav-links { display: none; }
+    #theories { padding: 5rem 1.5rem; }
+    .theories-grid { grid-template-columns: 1fr; }
+    .pub-shelf { grid-template-columns: 1fr; }
+    .games-grid { grid-template-columns: 1fr; }
+    .plans-grid { grid-template-columns: 1fr; }
+    .author-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .author-left { position: static; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    #theories, #soul-games, #membership, #newsletter { padding: 5rem 1.5rem; }
+    #publications, #author { padding: 5rem 1.5rem; }
+    .newsletter-form { flex-direction: column; }
+    .newsletter-input { border-right: 1px solid var(--border); border-bottom: none; }
+    .footer-bottom { flex-direction: column; gap: 1rem; }
+  }
+</style>
 </head>
 <body>
 
-    <main class="container">
-        
-        <section class="hero-section">
-            <div class="mono">// ORIGIN PROTOCOL</div>
-            <h1>From Ancestral Soil to Cosmic Radiance.</h1>
-            <p>Reality is not an accident. It is an organized mathematical resonance cascading across light, geometry, and the deep frequencies of human consciousness.</p>
-            <div>
-                <a href="#treatise" class="action-link">Examine the Architecture &rarr;</a>
-            </div>
-        </section>
+<canvas id="cosmos-canvas"></canvas>
 
-        <section id="treatise" class="editorial-grid">
-            
-            <div class="sticky-col">
-                <div class="mono">// THE CUSTODIAN</div>
-                <h2>Minenhle Langa</h2>
-                <p><strong>Bridging empirical psychology and cosmic order.</strong> Holding academic foundations in Education, Honours, and psychological frameworking, operating as a spiritually led translator of unmanifest physics.</p>
-                <p>This is not a space for modern commercialism. It is a systematic synthesis of ancient architecture and modern quantum realities.</p>
-                <div>
-                    <a href="mailto:your-email@domain.com" class="action-link">Initiate Consultation</a>
-                </div>
-            </div>
+<!-- ===================== NAVIGATION ===================== -->
+<nav>
+  <a href="#" class="nav-logo">The Langa Institute</a>
+  <ul class="nav-links">
+    <li><a href="#theories">Theories</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#soul-games">Soul Inquiries</a></li>
+    <li><a href="#author">The Author</a></li>
+    <li><a href="#membership">Membership</a></li>
+  </ul>
+  <a href="#membership" class="nav-cta">Access Full Papers</a>
+</nav>
 
-            <div>
-                <div class="data-card">
-                    <div class="mono">01 / THE SOUTHERN ROOT</div>
-                    <h3>Ancestral Resonances</h3>
-                    <p>True cosmology is local before it is universal. The ancient spiritual currents of South Africa exist as the primordial matrix of human awareness. Our ancestors did not speak in abstract mythology; they engineered precise methodologies to tap directly into the planetary grid, understanding intuitively that the geometry of the land dictates the stabilization of human consciousness.</p>
-                </div>
+<!-- ===================== HERO ===================== -->
+<section id="hero">
+  <p class="hero-eyebrow">Cosmological & Consciousness Theory · Est. 2025</p>
+  <h1 class="hero-title">
+    The Universe Is Not<br>Outside of <em>You</em>
+  </h1>
+  <p class="hero-sub">
+    Original theoretical frameworks on the nature of reality, consciousness, and the fractal architecture of existence — published by Minenhle Langa.
+  </p>
+  <div class="hero-buttons">
+    <a href="#theories" class="btn-primary">Explore the Theories</a>
+    <a href="#soul-games" class="btn-ghost">Go Inward</a>
+  </div>
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
 
-                <div class="data-card">
-                    <div class="mono">02 / THE UNIVERSAL RATIO</div>
-                    <h3>The Phi Convergence</h3>
-                    <p>The movement of consciousness from a singular point into the vast expanse of the cosmos obeys an immutable geometric law. This scaling factor is defined by the Golden Ratio:</p>
-                    <p style="color: var(--text); font-family: 'DM Mono', monospace; font-size: 1.2rem; padding: 1rem 0;">
-                        Φ = (1 + √5) / 2
-                    </p>
-                    <p>From the microscopic structural orientation of our DNA to the sweeping trajectories of galactic clusters, existence mirrors this exact spiral. True psychological integration occurs when the individual aligns their core cognitive patterns back to this fundamental universal frequency.</p>
-                </div>
+<!-- ===================== MANIFESTO ===================== -->
+<section id="manifesto">
+  <p class="manifesto-text">
+    "Nothing you seek is located beyond the boundary of your own awareness. The cosmos is not a container you live inside — it is a pattern that lives inside you, repeating, folding, awakening."
+  </p>
+  <p class="manifesto-attr">— Minenhle Langa, Everything Is Everything, §I</p>
+</section>
 
-                <div class="data-card">
-                    <div class="mono">03 / THE MATHEMATICAL AXIS</div>
-                    <h3>The 11/2 Master Matrix</h3>
-                    <p>When you strip away physical illusion, reality reveals its numerical bedrock. Utilizing the rigorous addition laws of Vortex Math, we unlock the digital root structures that govern energy flow. The absolute center of this evolutionary trajectory rests upon the Master Number 11/2—the vibrational bridge where raw cosmic impulse translates directly into conscious, split psychological reality.</p>
-                </div>
+<!-- ===================== THEORIES ===================== -->
+<section id="theories">
+  <p class="section-label">Published Theories</p>
+  <div class="theories-grid">
 
-                <div class="data-card">
-                    <div class="mono">04 / THE RADIATION MATRIX</div>
-                    <h3>The Electromagnetic Spectrum</h3>
-                    <p>Spirituality is simply undetected physics. What we define as the ethereal or unseen soul operates entirely within the vast, continuous architecture of the electromagnetic spectrum. Every cognitive shift, traumatic block, or peak state of ancestral communion is an literal shift in electromagnetic frequency:</p>
-                    <p style="color: var(--text); font-family: 'DM Mono', monospace; font-size: 1.2rem; padding: 1rem 0;">
-                        E = hν
-                    </p>
-                    <p>Energy and frequency are completely inseparable. By viewing human psychology through this quantum lens, we systematically transcend base societal conditioning, tuning the human nervous system to operate as a high-fidelity receptor for universal data.</p>
-                </div>
+    <a class="theory-card" onclick="openPaper('eie'); return false;" href="#">
+      <p class="theory-number">Theory I · 2025</p>
+      <h2 class="theory-title">Everything<br>Is Everything</h2>
+      <p class="theory-subtitle">Fractal · Holographic · Quintamazed</p>
+      <p class="theory-desc">
+        The universe is not a collection of separate objects governed by external forces. It is a single, self-similar, fractal holographic reality system — quintamazed from the inside out. This theory explores how consciousness, matter, space, and time are expressions of one recursive pattern repeating at every scale of existence.
+      </p>
+      <div class="theory-meta">
+        <div>Pages <span>16</span></div>
+        <div>Citations <span>Open</span></div>
+        <div>Domain <span>Cosmology · Consciousness</span></div>
+      </div>
+      <div class="theory-read-btn">Read Paper →</div>
+    </a>
 
-            </div>
-        </section>
+    <a class="theory-card" onclick="openPaper('tir'); return false;" href="#">
+      <p class="theory-number">Theory II · 2025</p>
+      <h2 class="theory-title">Thoughts + Ideas<br>= Reality</h2>
+      <p class="theory-subtitle">Cognitive · Quantum · Generative</p>
+      <p class="theory-desc">
+        Reality is not passively observed — it is actively authored. This framework proposes that the combination of thought and idea is not metaphor but mechanism: the precise process by which consciousness collapses possibility into the experienced world. Every moment of reality was first a moment of mind.
+      </p>
+      <div class="theory-meta">
+        <div>Pages <span>16</span></div>
+        <div>Citations <span>Open</span></div>
+        <div>Domain <span>Quantum Mind · Philosophy</span></div>
+      </div>
+      <div class="theory-read-btn">Read Paper →</div>
+    </a>
 
-        <footer class="footer-brand">
-            <div class="mono">// SYLLABUS ENGAGEMENT</div>
-            <p style="margin: 0;">To engage with current research collections, clinical psychological applications, or collaborative cosmological mappings, submit a formal inquiry.</p>
-            <div>
-                <a href="mailto:your-email@domain.com" class="action-link">Open Communication Channels &rarr;</a>
-            </div>
-        </footer>
+  </div>
+</section>
 
-    </main>
+<!-- ===================== PUBLICATIONS SHELF ===================== -->
+<section id="publications">
+  <div class="pub-inner">
+    <p class="section-label">The Archive</p>
+
+    <div class="pub-filters">
+      <button class="filter-btn active" onclick="filterPubs(this, 'all')">All Papers</button>
+      <button class="filter-btn" onclick="filterPubs(this, 'cosmology')">Cosmology</button>
+      <button class="filter-btn" onclick="filterPubs(this, 'consciousness')">Consciousness</button>
+      <button class="filter-btn" onclick="filterPubs(this, 'philosophy')">Philosophy of Mind</button>
+      <button class="filter-btn" onclick="filterPubs(this, 'quantum')">Quantum Reality</button>
+    </div>
+
+    <div class="pub-shelf" id="pub-shelf">
+
+      <div class="pub-item" data-cat="cosmology" onclick="openPaper('eie')">
+        <span class="pub-tag">Cosmology</span>
+        <h3 class="pub-title">Everything Is Everything: A Fractal Holographic Model</h3>
+        <p class="pub-excerpt">The universe as a self-referential, recursive system — quintamazed from within. A 16-page theoretical framework establishing the geometry of all reality.</p>
+        <div class="pub-footer">
+          <span>Minenhle Langa · 2025</span>
+          <span class="pub-pages">16 pp</span>
+          <svg class="pub-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+      </div>
+
+      <div class="pub-item" data-cat="consciousness" onclick="openPaper('tir')">
+        <span class="pub-tag">Consciousness</span>
+        <h3 class="pub-title">Thoughts + Ideas = Reality: A Generative Framework</h3>
+        <p class="pub-excerpt">Consciousness is not epiphenomenal. This paper formalises the mechanism by which thought and idea combine to produce the experienced world — not metaphorically, but structurally.</p>
+        <div class="pub-footer">
+          <span>Minenhle Langa · 2025</span>
+          <span class="pub-pages">16 pp</span>
+          <svg class="pub-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+      </div>
+
+      <div class="pub-item" data-cat="philosophy">
+        <span class="pub-tag">Philosophy of Mind</span>
+        <h3 class="pub-title">The Observer and the Observed: On Collapsing Duality</h3>
+        <p class="pub-excerpt">An exploration of what occurs at the boundary between the one who looks and the thing looked at — and why that boundary may be an illusion the universe maintains for creative purposes.</p>
+        <div class="pub-footer">
+          <span>Minenhle Langa · 2026</span>
+          <span class="pub-pages">Forthcoming</span>
+        </div>
+      </div>
+
+      <div class="pub-item" data-cat="quantum">
+        <span class="pub-tag">Quantum Reality</span>
+        <h3 class="pub-title">The Holographic Principle and Inner Space</h3>
+        <p class="pub-excerpt">Connecting Bekenstein-Hawking entropy bounds to the phenomenology of interior experience — the case that inner space encodes outer space with perfect fidelity.</p>
+        <div class="pub-footer">
+          <span>Minenhle Langa · 2026</span>
+          <span class="pub-pages">Forthcoming</span>
+        </div>
+      </div>
+
+      <div class="pub-item" data-cat="cosmology">
+        <span class="pub-tag">Cosmology</span>
+        <h3 class="pub-title">Quintamazement: A New Geometry of Reality</h3>
+        <p class="pub-excerpt">Defining and formalising the concept of quintamazement — the process by which a system contains, generates, and exceeds itself simultaneously across all scales.</p>
+        <div class="pub-footer">
+          <span>Minenhle Langa · 2026</span>
+          <span class="pub-pages">Forthcoming</span>
+        </div>
+      </div>
+
+      <div class="pub-item" data-cat="consciousness">
+        <span class="pub-tag">Consciousness</span>
+        <h3 class="pub-title">Silence as Information: The Language Before Thought</h3>
+        <p class="pub-excerpt">Examining the pre-cognitive substrate from which thoughts arise — and whether silence itself carries the highest informational density of any state a mind can access.</p>
+        <div class="pub-footer">
+          <span>Minenhle Langa · 2026</span>
+          <span class="pub-pages">Forthcoming</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SOUL GAMES ===================== -->
+<section id="soul-games">
+  <p class="section-label" style="justify-content:center; text-align:center">Soul Inquiries</p>
+  <p class="games-intro">
+    These are not puzzles. They are mirrors. Each game is an invitation to discover that the answer was always located where you are standing.
+  </p>
+
+  <div class="games-grid">
+
+    <div class="game-card">
+      <span class="game-icon">◈</span>
+      <h3 class="game-name">The Mirror Within</h3>
+      <p class="game-desc">A reflective question game. Each prompt is designed to surface the part of you that already knows — before the mind begins explaining.</p>
+      <button class="game-play-btn" onclick="openGame('mirror')">Begin Inquiry</button>
+    </div>
+
+    <div class="game-card">
+      <span class="game-icon">∞</span>
+      <h3 class="game-name">The Fractal Walk</h3>
+      <p class="game-desc">Navigate a branching series of choices — not to find the right answer, but to notice which part of you makes the choice and why.</p>
+      <button class="game-play-btn" onclick="openGame('fractal')">Enter the Pattern</button>
+    </div>
+
+    <div class="game-card">
+      <span class="game-icon">◎</span>
+      <h3 class="game-name">Thought Builder</h3>
+      <p class="game-desc">An interactive demonstration of Theory II. Watch how combining a thought with an intention generates a felt reality — in real time, in you.</p>
+      <button class="game-play-btn" onclick="openGame('thought')">Construct Now</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===================== AUTHOR ===================== -->
+<section id="author">
+  <div class="author-inner">
+    <div class="author-left">
+      <div class="author-monogram"><span>ML</span></div>
+      <h2 class="author-name">Minenhle Langa</h2>
+      <p class="author-title-tag">Independent Theoretical Researcher</p>
+      <p class="author-bio">
+        Minenhle Langa is an independent researcher working at the intersection of cosmological theory, consciousness studies, and the philosophy of mind. His work proposes original frameworks for understanding how reality is structured, generated, and experienced.
+      </p>
+      <div class="author-stats">
+        <div class="author-stat">
+          <span class="author-stat-num">2</span>
+          <span class="author-stat-label">Original Theories Published</span>
+        </div>
+        <div class="author-stat">
+          <span class="author-stat-num">32+</span>
+          <span class="author-stat-label">Pages of Original Research</span>
+        </div>
+        <div class="author-stat">
+          <span class="author-stat-num">∞</span>
+          <span class="author-stat-label">Depth of the Subject</span>
+        </div>
+      </div>
+    </div>
+    <div class="author-right">
+      <h3>On Why These Papers Were Written</h3>
+      <p>
+        These theories did not begin as intellectual exercises. They emerged from a direct confrontation with the question that underlies all other questions: <strong>what is this, and why does it feel like something?</strong>
+      </p>
+      <p>
+        The prevailing frameworks — both scientific and spiritual — tend to place the source of reality outside the person asking about it. Physics points outward, to particles and fields. Religion points upward, to transcendence. But both gestures share the same assumption: that what you are looking for is not where you already are.
+      </p>
+      <p>
+        <strong>Everything Is Everything</strong> challenges this assumption at its root. If the universe is genuinely fractal and holographic, then every point within it contains the whole. You are not a fragment of the cosmos observing itself from the outside. You are the cosmos, reading its own source code from within.
+      </p>
+      <p>
+        <strong>Thoughts + Ideas = Reality</strong> then asks: if that is the structure, what is the mechanism? How does consciousness participate in reality rather than merely witness it? The answer proposed here is not mystical in the vague sense — it is structural. The combination of thought and idea is the precise process by which the infinite collapses into the specific, by which possibility becomes the moment you are currently living.
+      </p>
+      <p>
+        These papers are written for the person who has always sensed that the most important discoveries are not waiting in a laboratory or a scripture — but in the direction almost no one is trained to look.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MEMBERSHIP ===================== -->
+<section id="membership">
+  <p class="section-label" style="justify-content:center">Access & Membership</p>
+  <p class="membership-intro">
+    Full papers, forthcoming work, annotated editions, and new soul inquiries — unlocked through a membership that funds continued independent research.
+  </p>
+
+  <div class="plans-grid">
+
+    <div class="plan">
+      <p class="plan-name">Reader</p>
+      <div class="plan-price"><sup>$</sup>0</div>
+      <p class="plan-period">Free, forever</p>
+      <ul class="plan-features">
+        <li class="active">Abstracts of all papers</li>
+        <li class="active">One soul inquiry game</li>
+        <li class="active">Monthly newsletter</li>
+        <li>Full paper access</li>
+        <li>Annotated editions</li>
+        <li>Forthcoming work early access</li>
+      </ul>
+      <button class="plan-btn" onclick="alert('Free access — no signup required.')">Begin Reading</button>
+    </div>
+
+    <div class="plan featured">
+      <p class="plan-name">Member</p>
+      <div class="plan-price"><sup>$</sup>9</div>
+      <p class="plan-period">per month · cancel any time</p>
+      <ul class="plan-features">
+        <li class="active">All published papers, full text</li>
+        <li class="active">All soul inquiry games</li>
+        <li class="active">Annotated research editions</li>
+        <li class="active">Early access to forthcoming work</li>
+        <li class="active">Monthly deep-reading sessions</li>
+        <li>Everything in Scholar tier</li>
+      </ul>
+      <button class="plan-btn" onclick="alert('Membership checkout — integration with Stripe/Lemon Squeezy. Coming soon.')">Become a Member</button>
+    </div>
+
+    <div class="plan">
+      <p class="plan-name">Scholar</p>
+      <div class="plan-price"><sup>$</sup>29</div>
+      <p class="plan-period">per month · for serious inquiry</p>
+      <ul class="plan-features">
+        <li class="active">Everything in Member tier</li>
+        <li class="active">Full research notes & drafts</li>
+        <li class="active">PDF downloads of all papers</li>
+        <li class="active">Citation rights for your own work</li>
+        <li class="active">Quarterly Q&A with the author</li>
+        <li class="active">Name in acknowledgements</li>
+      </ul>
+      <button class="plan-btn" onclick="alert('Scholar checkout coming soon.')">Become a Scholar</button>
+    </div>
+
+  </div>
+
+  <p style="font-size:0.72rem; color:var(--muted); margin-top:1.5rem;">
+    Memberships fund independent research — not a product, not a course, not a certification. Just the work, continued.
+  </p>
+</section>
+
+<!-- ===================== NEWSLETTER ===================== -->
+<section id="newsletter">
+  <p class="section-label" style="justify-content:center">The Transmission</p>
+  <h2 class="newsletter-title">Monthly Dispatches from<br>the Edge of the Known</h2>
+  <p class="newsletter-sub">New thinking, annotated excerpts, and reflections — delivered once a month.</p>
+  <div class="newsletter-form">
+    <input type="email" class="newsletter-input" placeholder="your@email.com" id="nl-email">
+    <button class="newsletter-submit" onclick="handleNewsletter()">Subscribe</button>
+  </div>
+  <p class="newsletter-note">No noise. No selling. Just the research, in your inbox.</p>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" class="nav-logo" style="display:inline-block; margin-bottom:1rem;">The Langa Institute</a>
+        <p>An independent research publication dedicated to original theoretical frameworks on the nature of consciousness, cosmology, and reality.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Research</h4>
+        <ul>
+          <li><a href="#" onclick="openPaper('eie'); return false;">Everything Is Everything</a></li>
+          <li><a href="#" onclick="openPaper('tir'); return false;">Thoughts + Ideas = Reality</a></li>
+          <li><a href="#publications">Full Archive</a></li>
+          <li><a href="#">Forthcoming Work</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#soul-games">Soul Inquiries</a></li>
+          <li><a href="#author">About the Author</a></li>
+          <li><a href="#membership">Membership</a></li>
+          <li><a href="#newsletter">Newsletter</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Terms of Access</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Citation Guidelines</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025–2026 Minenhle Langa · The Langa Institute · All rights reserved</p>
+      <div class="footer-links">
+        <a href="#">X / Twitter</a>
+        <a href="#">Substack</a>
+        <a href="#">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ===================== PAPER MODAL ===================== -->
+<div id="paper-modal">
+  <div class="paper-modal-inner">
+    <div class="paper-close-row">
+      <span class="paper-journal-label">The Langa Institute · Published Research</span>
+      <button class="paper-close-btn" onclick="closePaper()">← Close Paper</button>
+    </div>
+    <div id="paper-body-content"></div>
+  </div>
+</div>
+
+<!-- ===================== GAME MODAL ===================== -->
+<div class="modal-overlay" id="game-modal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeGame()">✕</button>
+    <h2 class="modal-title" id="game-modal-title">Soul Inquiry</h2>
+    <p class="modal-sub" id="game-modal-sub">There are no wrong answers. Only more honest ones.</p>
+    <div id="game-content"></div>
+  </div>
+</div>
+
+<script>
+// ===================== COSMOS CANVAS =====================
+const canvas = document.getElementById('cosmos-canvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+let mouseX = 0, mouseY = 0;
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
+function initParticles() {
+  particles = [];
+  const count = Math.min(180, Math.floor(window.innerWidth * window.innerHeight / 6000));
+  for (let i = 0; i < count; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 1.2 + 0.2,
+      vx: (Math.random() - 0.5) * 0.15,
+      vy: (Math.random() - 0.5) * 0.15,
+      alpha: Math.random() * 0.5 + 0.1,
+      color: Math.random() > 0.85 ? '#c9a84c' : Math.random() > 0.7 ? '#6b4f8a' : '#f0f0ff'
+    });
+  }
+}
+
+function drawParticles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach(p => {
+    const dx = p.x - mouseX, dy = p.y - mouseY;
+    const dist = Math.sqrt(dx*dx + dy*dy);
+    const repel = Math.max(0, 1 - dist / 140);
+    p.x += p.vx + (dx / dist || 0) * repel * 0.4;
+    p.y += p.vy + (dy / dist || 0) * repel * 0.4;
+    if (p.x < 0) p.x = canvas.width;
+    if (p.x > canvas.width) p.x = 0;
+    if (p.y < 0) p.y = canvas.height;
+    if (p.y > canvas.height) p.y = 0;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = p.color;
+    ctx.globalAlpha = p.alpha;
+    ctx.fill();
+    ctx.globalAlpha = 1;
+  });
+  // Draw subtle connections
+  particles.forEach((p, i) => {
+    particles.slice(i+1).forEach(q => {
+      const d = Math.hypot(p.x-q.x, p.y-q.y);
+      if (d < 80) {
+        ctx.beginPath();
+        ctx.moveTo(p.x, p.y);
+        ctx.lineTo(q.x, q.y);
+        ctx.strokeStyle = 'rgba(201,168,76,' + (0.06 * (1 - d/80)) + ')';
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
+      }
+    });
+  });
+  requestAnimationFrame(drawParticles);
+}
+
+window.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
+window.addEventListener('resize', () => { resizeCanvas(); initParticles(); });
+resizeCanvas(); initParticles(); drawParticles();
+
+// ===================== PUB FILTERS =====================
+function filterPubs(btn, cat) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.pub-item').forEach(item => {
+    if (cat === 'all' || item.dataset.cat === cat) {
+      item.style.display = '';
+    } else {
+      item.style.display = 'none';
+    }
+  });
+}
+
+// ===================== PAPER MODAL =====================
+const papers = {
+  eie: {
+    category: 'Cosmological Theory · Consciousness Studies',
+    title: 'Everything Is Everything',
+    tagline: 'A Fractal Holographic Model of Reality, Quintamazed from the Inside Out',
+    author: 'Minenhle Langa',
+    date: '2025',
+    pages: '16',
+    body: `
+      <div class="abstract-box">
+        <strong>Abstract</strong><br>
+        This paper proposes that the universe is not a collection of discrete objects governed by external laws, but a single, self-similar, fractal holographic reality system that generates, contains, and expresses itself from within. The term "quintamazed" is introduced to describe the five-fold recursive process by which reality loops through itself across all scales — from quantum foam to galactic superstructure, from pre-conscious silence to the fully articulated moment of human experience. The argument proceeds through cosmological evidence for holographic structure, a philosophical analysis of fractality as the universe's native geometry, and a phenomenological investigation of what it means to be inside a system that contains itself. The paper concludes that the distinction between observer and observed is not a fundamental feature of reality but a temporary fold in the fabric of one self-experiencing whole.
+      </div>
+
+      <h2>I. The Geometry of Everything</h2>
+      <p>Begin with a simple observation: no matter what scale of reality you examine, you find the same patterns. The branching of a river delta mirrors the branching of the bronchial tree. The spiral of a galaxy mirrors the spiral of a nautilus shell. The electrical discharge of a lightning bolt mirrors the neural branching of the cerebral cortex. These are not coincidences of aesthetic taste. They are signatures.</p>
+      <p>Fractal geometry — the mathematics of self-similar patterns at every scale — was formalised by Benoît Mandelbrot in the late twentieth century. But the geometry itself is far older than its formalisation. It is, this paper argues, the geometry of reality as such. Not a useful approximation. Not a pattern we find in some places. The architecture of the whole.</p>
+      <p>A fractal is a system in which each part contains a representation of the whole. Zoom in, and you find the same structure. Zoom out, and the same. There is no level at which the pattern becomes fundamentally different. This is not an analogy for the universe. This paper proposes it as a literal description of how the universe is built.</p>
+
+      <h3>1.1 What Holographic Means, Precisely</h3>
+      <p>The holographic principle, first proposed in the context of black hole thermodynamics by Jacob Bekenstein and later developed by Gerard 't Hooft and Leonard Susskind, holds that the information required to describe a volume of space is encoded entirely on the boundary surface of that volume. The interior is, in a precise technical sense, a projection of the boundary.</p>
+      <p>This is not a metaphor. It is a mathematical statement about the informational structure of physical reality. What it implies, followed to its conclusion, is that the dimensionality of reality is not what it appears. The three-dimensional world we inhabit may be a holographic rendering of a two-dimensional informational substrate — one that is itself encoded in something else, and so on, recursively, without end.</p>
+      <p>Combine this with fractal geometry, and a picture begins to emerge: a universe that is simultaneously everywhere and within itself at every level. Not a container holding things. A pattern that is its own container, its own contents, and its own boundary simultaneously.</p>
+
+      <div class="pullquote">
+        "The universe is not the room you are standing in. It is the standing, and the room, and the one who stands — all at once."
+      </div>
+
+      <h2>II. Quintamazement — A New Term for an Ancient Structure</h2>
+      <p>No existing vocabulary adequately captures what happens when a fractal holographic system generates itself from within. "Recursion" is too computational. "Emergence" too modest. "Self-organisation" too mechanistic. A new term is needed, and that term is <em>quintamazement</em>.</p>
+      <p>Quintamazement describes a five-fold process by which reality loops through itself at every scale:</p>
+      <p><strong>1. Containment:</strong> Every part of the system contains a representation of the whole. Not approximately. Exactly — subject to the resolution of the level being examined.</p>
+      <p><strong>2. Generation:</strong> Each contained representation is not passive. It generates new expressions of itself. The pattern is not stored; it is continuously produced.</p>
+      <p><strong>3. Transcendence:</strong> The generated expression exceeds the scale of the level that produced it. The whole is always larger than — and present within — the part that contains it.</p>
+      <p><strong>4. Return:</strong> The transcendent whole returns to itself through the very parts it exceeds. Reality folds back into itself through every point it has expanded into.</p>
+      <p><strong>5. Amazement:</strong> The system recognises itself. This is what consciousness is — reality becoming aware of its own structure from within a specific node of that structure. Amazement is not an emotional reaction; it is an informational event. The system encountering itself.</p>
+
+      <h2>III. Evidence from Physics</h2>
+      <p>The case for a fractal holographic reality is not purely philosophical. Several lines of physical evidence point in this direction, and while no single line is conclusive, their convergence is significant.</p>
+      <p>Quantum entanglement — the phenomenon by which two particles separated by arbitrary distances remain instantaneously correlated — is deeply difficult to explain within a purely local, classical model of reality. It becomes considerably less strange if the apparent distance between the particles is itself a feature of the holographic rendering, rather than a feature of the underlying informational substrate. If the "distance" between two points in three-dimensional space is not present at the informational level, entanglement is not action at a distance. It is action within a single location, viewed from a level at which that location appears extended.</p>
+      <p>Similarly, the flatness of the observable universe at large scales — the striking uniformity of the cosmic microwave background — is consistent with a universe that is, at the deepest level, a single coherent informational state expressing itself as apparent diversity at lower levels of resolution.</p>
+      <p>The fine-structure constant, the cosmological constant, and several other fundamental parameters of physics sit at precisely the values that permit complex structure — and therefore consciousness — to exist. The standard response to this observation is the anthropic principle: we observe these values because only these values produce observers. But this argument is circular. The fractal holographic model offers an alternative: these values are not arbitrary parameters of an external universe. They are internal constraints of a self-generating system — the system tuning itself to produce the level of complexity required for it to experience itself.</p>
+
+      <h2>IV. The Inside-Out Topology of Reality</h2>
+      <p>Conventional cosmology imagines the universe as a container: an expanding space within which matter and energy exist and interact. Consciousness, in this picture, is a late-arriving phenomenon — a product of sufficiently complex matter, which is itself a product of physical processes that were present before consciousness arrived.</p>
+      <p>The fractal holographic model inverts this topology. If every point in the system contains the whole, then the "outside" that conventional cosmology points to — the vast universe out there, pre-existing and independent — is not the source of the system. It is a projection of it. The cosmos is not a container you are inside of. It is a pattern that is inside you — and equally, a pattern that you are inside of. Both simultaneously. This is the inside-out structure of quintamazement.</p>
+      <p>This inversion has consequences for how we understand interiority. The inner life — thoughts, feelings, perception, awareness — is not a secondary product of a physical universe that existed prior to it. It is the same process as the physical universe, encountered from a particular fold within the system's self-referential structure. There is no fundamental boundary between what is "inside the mind" and what is "outside in the world." There is only the pattern, encountering itself from within itself, at different scales and with different apparent separations.</p>
+
+      <h2>V. What This Means for the Human Person</h2>
+      <p>If the universe is a fractal holographic system quintamazed from the inside out, then the human person is not a small object in a large universe. The human person is a fold in the fabric of reality through which reality encounters itself in a particular configuration.</p>
+      <p>Every experience you have — every perception, every thought, every feeling of aliveness — is reality experiencing itself through the specific geometry of you. This is not a spiritual platitude. It is a structural claim: the universe does not merely permit your experience; it produces your experience as one of the means by which it completes the process of quintamazement.</p>
+      <p>The search for meaning that humans universally conduct is, within this framework, the system searching for its own structure. When you feel the pull toward depth, toward understanding, toward the sensation that there is something more to existence than the surface — that pull is the fractal pattern of reality recognising itself in the one asking the question.</p>
+
+      <div class="pullquote">
+        "You are not a creature trying to understand the universe. You are the universe, trying to understand itself through the creature it has become."
+      </div>
+
+      <h2>VI. Philosophical Implications</h2>
+      <p>The history of philosophy is largely a history of the subject-object distinction: the question of how the one who experiences relates to the world that is experienced. Descartes placed the subject inside, the world outside, and spent his career trying to reconnect them. Kant established that the world as it appears is always partly a product of the structures of the experiencing mind. Hegel proposed that reality is a single self-developing spirit that comes to know itself through finite minds. Phenomenology insisted on beginning with the structure of experience itself, rather than with theories about what produces it.</p>
+      <p>The fractal holographic model synthesises and exceeds each of these positions. It agrees with Kant that the experienced world is partly constituted by the structures of the experiencer — but goes further: the structures of the experiencer are themselves expressions of the universe's own structure. It agrees with Hegel that reality is self-developing and self-knowing — but without the teleological necessity that made Hegel's system rigid. The fractal is not moving toward a final self-realisation. It is always already self-realised, at every scale, in every moment. Quintamazement is not a process with a destination. It is an ongoing event with no edge.</p>
+
+      <h2>VII. Toward a Science of the Interior</h2>
+      <p>If this paper's central thesis is correct, the interior of human experience is not a private, causally isolated domain that physics cannot address. It is the fractal holographic system encountering itself from within, and it should therefore exhibit the same structural signatures as the rest of the system.</p>
+      <p>This prediction is empirically testable — not by conventional experimental methods, which are designed to examine the system from a position of simulated external observation, but by disciplined introspective methods that examine the system from within. The traditions of meditation, contemplation, and directed inner inquiry are, in this light, empirical methodologies — as rigorous and repeatable as any laboratory procedure, and addressing a domain that laboratory procedures cannot, by design, reach.</p>
+      <p>A science of the interior would not replace physics. It would complete it — providing access to the half of reality that physics necessarily excludes by adopting the third-person perspective as its epistemic baseline. The fractal holographic model predicts that interior investigation, conducted with sufficient precision, will reveal the same fractal self-similarity, the same holographic encoding, and the same recursive self-reference that physics finds in the exterior world. They are the same world.</p>
+
+      <h2>VIII. Conclusion</h2>
+      <p>The universe is not a collection of objects. It is a single fractal holographic system, quintamazed from the inside out — generating, containing, and recognising itself through every point it inhabits.</p>
+      <p>This conclusion is not an invitation to mysticism. It is an invitation to a more rigorous empiricism — one that does not arbitrarily exclude the interior as a domain of investigation, and one that is willing to follow the evidence of fractal geometry, holographic encoding, and the structure of lived experience to their common source.</p>
+      <p>Everything is everything. Not as poetry. As the most precise statement that can be made about the structure of what is.</p>
+
+      <div class="paper-blur-gate">
+        <div class="blurred-text">
+          <h2>Appendix A: Mathematical Formalisation of Quintamazement</h2>
+          <p>Let R denote a reality system with informational substrate I and phenomenal projection P. We define quintamazement Q as the five-operator tuple Q = (C, G, T, Ret, A) where C is the containment operator, G the generation operator, T the transcendence operator, Ret the return operator, and A the awareness operator. For any region r ⊂ R, the containment property requires that I(r) ≅ I(R) under scale transformation σ, such that the informational content of the part is isomorphic to the informational content of the whole. The holographic bound establishes that the maximal information encodable on a surface of area A is S = A/4lP² in Planck units, confirming that boundary encodes volume across all scales. Fractal dimension df for the quintamazed system is non-integer and satisfies df = lim(ε→0) log(N(ε))/log(1/ε) where N(ε) counts self-similar copies at resolution ε. The awareness operator A closes the loop: A(r, R) = 1 iff the system R contains a sub-region r with sufficient informational complexity to model its own embedding in R...</p>
+        </div>
+        <div class="blur-overlay">
+          <p>Full appendices, formal proofs, and citation notes are available to Members.</p>
+          <a href="#membership" class="btn-primary" onclick="closePaper()">Unlock Full Access</a>
+        </div>
+      </div>
+
+      <div class="footnote">
+        Langa, M. (2025). Everything Is Everything: A Fractal Holographic Model of Reality, Quintamazed from the Inside Out. The Langa Institute. All rights reserved. Citation for academic use permitted with attribution.
+      </div>
+    `
+  },
+  tir: {
+    category: 'Philosophy of Mind · Quantum Cognition',
+    title: 'Thoughts + Ideas = Reality',
+    tagline: 'A Generative Framework for the Mechanism of Consciousness in the Production of the Experienced World',
+    author: 'Minenhle Langa',
+    date: '2025',
+    pages: '16',
+    body: `
+      <div class="abstract-box">
+        <strong>Abstract</strong><br>
+        This paper proposes that the equation Thought + Idea = Reality is not a metaphor for the power of positive thinking, nor a mystical claim about the nature of mind, but a structural description of the mechanism by which consciousness participates in the production of the experienced world. Drawing on quantum theories of consciousness, cognitive science, phenomenology, and the authors' own theoretical framework of fractal holographic reality, the paper argues that thought and idea are not the same kind of mental event, and that their combination produces a third thing — experienced reality — through a process analogous to quantum collapse. The paper proceeds through a precise definition of thought, a precise definition of idea, a formal account of their interaction, an analysis of what "reality" means within this framework, and a series of implications for how human beings can understand and participate in the process of reality-generation that they are, moment by moment, continuously performing.
+      </div>
+
+      <h2>I. The Question Behind All Questions</h2>
+      <p>Why does experience feel like something? This question — what philosophers call the "hard problem of consciousness" — has resisted explanation by every scientific framework so far deployed against it. We can describe the neural correlates of any experience in extraordinary detail. We cannot explain why there is something it is like to have that experience, rather than the neural correlates proceeding in the dark.</p>
+      <p>This paper approaches the question differently. Rather than asking "why does experience feel like something?" it asks "what does experience do?" The proposal is that experience — consciousness — is not merely an observer of reality. It is a generator of it. The equation Thoughts + Ideas = Reality is the compact statement of this proposal. This section develops what that statement means, precisely.</p>
+
+      <h3>1.1 The Standard Model is Incomplete</h3>
+      <p>The standard scientific model of consciousness treats it as an output of physical processes: neurons fire, patterns arise, experience emerges. Within this model, reality exists independently of consciousness and would proceed identically if consciousness were absent. The role of the mind is to record, not to produce.</p>
+      <p>But this model encounters a series of difficulties that grow more acute the more carefully they are examined. First, the measurement problem in quantum mechanics: the state of a quantum system is indeterminate until measured, and it is not clear what constitutes a measurement, or whether a measurement requires a conscious observer. Second, the binding problem: how do disparate neural processes, distributed across the brain, produce the unified field of experience? Third, the problem of intentionality: mental states are always about something — they have a directedness that no physical object possesses. How does intentionality arise from matter that has none?</p>
+      <p>These are not peripheral puzzles awaiting minor technical solutions. They are structural gaps in the standard model. This paper proposes that the gaps share a single source: the model has misidentified the direction of causation. Consciousness does not emerge from reality. Reality — the experienced world — emerges from consciousness, through the mechanism this paper describes.</p>
+
+      <h2>II. Thought — A Precise Definition</h2>
+      <p>The word "thought" is used loosely to mean almost any mental event. For the purposes of this framework, a more precise definition is required.</p>
+      <p>A thought, in this paper's usage, is a mental event with the following specific characteristics: it arises spontaneously or as the result of a prior mental event, it has a directional quality (it points toward something), it is time-bound (it arises, persists briefly, and passes), and it carries informational content about the present configuration of the experiencing system.</p>
+      <p>Thoughts, in this definition, are the universe's real-time self-monitoring. They are how the fractal holographic system (described in the companion paper, "Everything Is Everything") checks its own current state. A thought is not something the mind produces about the world. It is something the whole system (world-mind, not mind-in-world) produces about itself through the specific node that is the individual experiencer.</p>
+      <p>This is why thoughts arise unbidden. You do not decide to have thoughts; they appear. The system is continuously monitoring itself, and thoughts are what that monitoring feels like from the inside of a particular fold in the fractal.</p>
+
+      <h2>III. Idea — A Precise Definition</h2>
+      <p>An idea is not a thought. This distinction is essential and almost universally overlooked.</p>
+      <p>A thought reports the present state of the system. An idea proposes a state the system has not yet actualised. An idea has the structure of a possibility rather than the structure of a current actuality. It carries information about what could be, rather than what is. Ideas are, in the language of quantum mechanics, superpositions — states that are not yet collapsed to a single outcome.</p>
+      <p>Ideas are also different from thoughts in their phenomenological texture. Thoughts feel like reactions: they arrive in response to something, and they have a definite, usually verbal or imagistic character. Ideas feel like arrivals: they appear from outside the ordinary stream of cognition, they often carry a quality of surprise or recognition simultaneously, and they resist being fully captured in the verbal or imagistic form that thoughts naturally take. This is because an idea, prior to its combination with a thought, is not fully particularised. It exists in a state of defined potential — the direction is clear, but the specific form is not yet determined.</p>
+
+      <div class="pullquote">
+        "A thought says: this is what is. An idea says: this is what could be. Reality is what happens when the two meet and cannot be told apart."
+      </div>
+
+      <h2>IV. The Mechanism of Combination</h2>
+      <p>Thought and idea are not equal contributors to the production of reality. They are complementary. A thought without an idea is a report with no directive — the system tells itself what is, but generates no new state. An idea without a thought is a potential without a carrier — the possibility exists, but nothing collapses it into the particular.</p>
+      <p>The combination of thought and idea is the moment of collapse. The thought — carrying information about the present state of the system — meets the idea — carrying information about a possible state — and the result is not a new thought or a new idea but a third kind of event: an actualisation. This actualisation is what we call "reality" — not reality as the whole informational substrate of the universe, but reality as the moment of experienced specificity. The world, right now, as you are finding it.</p>
+      <p>This is why intention matters. Intention is not wishful thinking; it is the act of directing a thought toward a specific idea with sufficient precision and stability to complete the combination. When the combination completes, the possible collapses into the actual. A new moment of experienced reality is produced.</p>
+      <p>The equation is not Thought + Idea = Whatever You Want. It is Thought + Idea = The Next Moment of Reality You Inhabit. Most human beings perform this process continuously and unconsciously, which is why reality appears to happen to them rather than through them. Making the process conscious does not make it more powerful — it makes it more accurate. Unconscious combination produces reality shaped by unexamined thoughts and unclarified ideas. Conscious combination produces reality shaped by chosen thoughts and developed ideas.</p>
+
+      <h2>V. Quantum Parallels</h2>
+      <p>The mechanism described above has precise parallels in quantum mechanics — parallels that this paper regards not as mere analogies but as descriptions of the same underlying process at different levels of the fractal holographic system.</p>
+      <p>In quantum mechanics, a system exists in a superposition of states until a measurement is made, at which point the superposition collapses to a single state. The probability of collapsing to any particular state is given by the square of the corresponding amplitude in the superposition — that is, by how "dominant" that state was in the superposition prior to measurement.</p>
+      <p>An idea is a superposition of possible realities. A thought is the measurement — the current-state report that carries the informational weight to collapse the superposition. The resulting actualisation is the collapsed state: this specific moment of experienced reality, rather than any of the other possible moments that were available.</p>
+      <p>The "observer effect" in quantum mechanics — the experimental finding that observation affects the outcome of quantum events — is, within this framework, not a mysterious exception to the otherwise observer-independent behaviour of the physical world. It is a specific, measurable instance of the general principle: mind participates in the production of reality, not merely its observation.</p>
+
+      <h2>VI. What This Is Not</h2>
+      <p>The framework described in this paper will invite misreadings that must be anticipated and addressed.</p>
+      <p>First: this is not the "law of attraction." The law of attraction, as popularly presented, claims that positive thinking directly produces positive outcomes in the external world. The framework here makes no such claim. Thoughts do not directly produce external events. They combine with ideas to produce the next moment of experienced reality — which includes, but is not limited to, the person's readiness to perceive, respond to, and act within the situations that arise. The mechanism is real. The popular simplification of it is not.</p>
+      <p>Second: this is not solipsism. The proposal that consciousness participates in the production of experienced reality does not imply that reality is purely private or that other people are projections of the self. Within the fractal holographic model developed in the companion paper, all individuals are nodes in a single system. Each node participates in the production of its own experienced reality, and these experienced realities are consistent with each other because they are produced by the same underlying informational structure.</p>
+      <p>Third: this is not a claim that belief can override biology. The mechanism described here operates at the level of experienced reality — the texture and quality of the world as encountered. It does not override physical causation; it operates through it. A person who combines thoughts and ideas with precision and awareness does not become immune to physical harm. They become more precisely responsive to the physical world they inhabit, which is itself a different thing.</p>
+
+      <h2>VII. Practical Structure of the Framework</h2>
+      <p>If Thoughts + Ideas = Reality is a structural account of how experienced reality is produced, it carries implications for how a person can participate in that production more consciously.</p>
+      <p>The first implication is that thought quality matters more than thought quantity. Most people are exposed to an enormous volume of thoughts each day, most of them variations on themes established by prior experience. A small number of high-quality thoughts — by which we mean thoughts that accurately represent the current state of the system, rather than thoughts that represent habitual distortions of that state — have more generative power than a large number of low-quality ones.</p>
+      <p>The second implication is that idea development is a skill. An idea arrives as a potential. What is done with it between arrival and actualisation determines the quality of the reality it produces. The practices of contemplation, creative exploration, design, and any discipline that involves developing a potential toward a realised form are, within this framework, technologies of reality production — not metaphorically, but structurally.</p>
+      <p>The third implication is that the space between thought and idea — the moment of combination — is accessible to awareness. Most people experience this moment as involuntary: things just seem to happen. But the combination can be observed, and — with practice — it can be conducted consciously. This is what many contemplative traditions describe under the heading of "intention," "will," or "attention." The framework here provides a structural account of what those concepts refer to.</p>
+
+      <div class="pullquote">
+        "You have been building reality all your life. The only question is whether you have been doing it while paying attention."
+      </div>
+
+      <h2>VIII. Implications for the Relationship Between Self and World</h2>
+      <p>If reality — the experienced world — is the product of the continuous combination of thoughts and ideas within a fractal holographic system, the relationship between self and world changes significantly from what the standard model implies.</p>
+      <p>In the standard model, the self is a relatively small entity inhabiting a relatively large and independent world. The world existed before the self, will exist after it, and is not essentially affected by it. The self's task is to navigate the world successfully — to find its needs met within a system that does not care whether they are met or not.</p>
+      <p>In the framework proposed here, the self is not in the world. The self is a process through which the world — as experienced reality — is continuously produced. This does not make the world smaller. It makes the self larger — or rather, it dissolves the boundary between self and world at the level where the production of experienced reality occurs. The self and the world meet, at the generative level, in the moment of combination. That moment is where you actually live, whether you know it or not.</p>
+
+      <h2>IX. Conclusion</h2>
+      <p>Thoughts + Ideas = Reality is not a slogan. It is a compact description of the mechanism by which consciousness participates in the production of the world it inhabits.</p>
+      <p>The precision of the framework depends on the precision of the definitions: thought as the system's report of its own current state; idea as the superposition of possible states; reality as the collapsed actualisation that results from their combination. Within this framework, consciousness is not a passive observer of a pre-existing world. It is the active process through which the infinite possibility of the fractal holographic system collapses, moment by moment, into the specific world you are currently finding yourself in.</p>
+      <p>This is the mechanism. The question that follows — what will you do with it, now that you can see it — is not one this paper can answer. That answer is always produced by the same process: a thought, meeting an idea, in the moment you are already in.</p>
+
+      <div class="paper-blur-gate">
+        <div class="blurred-text">
+          <h2>Appendix B: Formal Notation for the Thought-Idea Combination</h2>
+          <p>Let T denote the set of all possible thoughts, I the set of all possible ideas, and R the set of all possible moments of experienced reality. We define a combination operator ⊕ : T × I → R such that for any thought t ∈ T and idea i ∈ I, their combination t ⊕ i = r produces a determinate moment of experienced reality r ∈ R. The mapping is not injective: multiple (t, i) pairs may produce the same r, accounting for the empirical finding that different cognitive paths can lead to the same experienced outcome. The mapping is also not surjective in the individual case: not all possible moments of reality r ∈ R are reachable from any single starting configuration of (t, i). Reachability is constrained by the current informational state of the system, which thought t partially encodes...</p>
+        </div>
+        <div class="blur-overlay">
+          <p>Full appendices, formal proofs, and citation notes are available to Members.</p>
+          <a href="#membership" class="btn-primary" onclick="closePaper()">Unlock Full Access</a>
+        </div>
+      </div>
+
+      <div class="footnote">
+        Langa, M. (2025). Thoughts + Ideas = Reality: A Generative Framework for the Mechanism of Consciousness in the Production of the Experienced World. The Langa Institute. All rights reserved. Citation for academic use permitted with attribution.
+      </div>
+    `
+  }
+};
+
+function openPaper(key) {
+  const p = papers[key];
+  document.getElementById('paper-body-content').innerHTML = `
+    <div class="paper-header">
+      <p class="paper-category">${p.category}</p>
+      <h1 class="paper-main-title">${p.title}</h1>
+      <p class="paper-tagline">${p.tagline}</p>
+      <div class="paper-author-row">
+        <span class="paper-author-name">${p.author}</span>
+        <span>·</span>
+        <span>${p.date}</span>
+        <span>·</span>
+        <span>${p.pages} pages</span>
+      </div>
+    </div>
+    <div class="paper-body">${p.body}</div>
+  `;
+  document.getElementById('paper-modal').classList.add('active');
+  document.getElementById('paper-modal').scrollTop = 0;
+  document.body.style.overflow = 'hidden';
+}
+
+function closePaper() {
+  document.getElementById('paper-modal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// ===================== GAMES =====================
+const games = {
+  mirror: {
+    title: 'The Mirror Within',
+    sub: 'Sit quietly. Answer honestly. Nothing is wrong.',
+    questions: [
+      {
+        q: 'Right now, in this moment, before you form an opinion about it — what is the quality of your awareness?',
+        options: ['Busy, scattered, many threads', 'Quiet, but I notice the quiet', 'Heavy, like something is present', 'Open, like a space with no walls'],
+        reflections: [
+          'Busyness is not the opposite of presence. It is presence, wearing a more complicated costume. Notice the one who notices the busyness.',
+          'The noticing of quiet is itself a form of quiet. You are already there. You have been there the whole time.',
+          'Heaviness is often what depth feels like before it becomes clear. You are not stuck — you are close to something real.',
+          'An open space with no walls is not empty. It is the condition from which everything emerges. You have found the ground.'
+        ]
+      },
+      {
+        q: 'When you imagine the deepest version of yourself — the self beneath roles, opinions, and history — what is its primary quality?',
+        options: ['Stillness', 'Knowing', 'Love', 'Something without a name'],
+        reflections: [
+          'Stillness is not passive. It is the condition from which all motion becomes possible. The deepest self does not move — everything moves within it.',
+          'Knowing without knowing what — this is the oldest description of consciousness. You are the knowing, not the thing known.',
+          'Love in the deepest sense is not an emotion. It is the recognition of non-separation. You are identifying the architecture of reality.',
+          'The deepest self often resists naming because it predates the capacity for naming. The fact that you sense it without words is the most accurate encounter possible.'
+        ]
+      },
+      {
+        q: 'If the universe is inside you — not metaphorically, but as a structural fact — what changes?',
+        options: ['Nothing, but everything feels different', 'I feel responsible in a new way', 'I feel less separate from what I was afraid of', 'I want to sit very still for a long time'],
+        reflections: [
+          'Yes. The facts do not change. The relationship to the facts changes completely. This is not a small thing.',
+          'Responsibility from wholeness feels nothing like responsibility from fear. It is lighter. It is also more precise.',
+          'Separation is the architecture of fear. When the separation is seen through, not suppressed but genuinely seen through, the fear has nowhere to live.',
+          'Sitting still is one of the most active things a human being can do. When the system that generated the cosmos goes quiet, it is not resting. It is listening to itself.'
+        ]
+      }
+    ]
+  },
+  fractal: {
+    title: 'The Fractal Walk',
+    sub: 'Follow the pattern. It leads somewhere you already are.',
+    questions: [
+      {
+        q: 'You are standing at the centre of a circle. The circle is the boundary of everything you currently believe is possible for you. Do you step toward the boundary, or do you go deeper into the centre?',
+        options: ['I step toward the boundary', 'I go deeper into the centre'],
+        reflections: [
+          'The boundary of what you believe is possible is not the boundary of what is possible. It is just the edge of the current map. Beyond it: the same pattern, at a larger scale. This is what courage is — not the absence of the boundary, but the willingness to discover it is not a wall.',
+          'The centre is where the fractal is most dense. Everything at the boundary is already present at the centre in compressed form. You are choosing to know something precisely rather than to expand it. Both are valid. The fractal contains both moves.'
+        ]
+      },
+      {
+        q: 'A thought arises that you cannot solve a particular problem in your life. What is the relationship between that thought and the truth?',
+        options: ['The thought might be accurate — I want to be realistic', 'The thought is a current report, not a final verdict', 'I notice I believe the thought automatically', 'The thought is protecting me from something'],
+        reflections: [
+          'Realism is valuable. But the thought "I cannot solve this" is a report on the current configuration of available resources — not on the total configuration of possible resources. Realism and openness are not opposites.',
+          'Yes. The fractal has more moves available than any single level of it can see. What is invisible from within the problem is often visible from one level outside it.',
+          'Automatic belief in thoughts is the default setting. Noticing it is not a failure — it is the first act of freedom within the process.',
+          'Thoughts that protect often do so by narrowing the field of possibilities. The narrowing is not a lie; it is a prioritisation that may no longer be necessary. Ask: what would I need to feel safe enough not to need this protection?'
+        ]
+      }
+    ]
+  },
+  thought: {
+    title: 'Thought Builder',
+    sub: 'Watch Theory II operate in real time, inside you.',
+    questions: [
+      {
+        q: 'Choose a thought — something you believe, right now, about who you are:',
+        options: ['I am someone who is searching for something', 'I am someone who already has what they need', 'I am someone in the middle of becoming', 'I am someone who is more than their story'],
+        reflections: [
+          'A searcher is never empty — the searching itself is a form of fullness. Now hold this thought, and add an idea to it: what if the thing you are searching for is the searching itself? Notice what shifts in your body.',
+          'This is not a comfortable thought for most people, because it removes the drama of lack. Sit with it. Notice the resistance, if any. The resistance is the old thought meeting the new idea.',
+          'Becoming is the most honest description of a living system. You are not a fixed thing becoming another fixed thing. You are the process of becoming, ongoing. What would you become, if you chose the direction right now?',
+          'The story is real. And you are real. Both are true. The part of you that is more than the story is the part reading these words right now, noticing that you are more than what you have been told about yourself.'
+        ]
+      },
+      {
+        q: 'Now add an idea. Something that does not yet exist in your life, but that you can feel as a genuine possibility:',
+        options: ['A version of me that is fully at peace', 'A version of my work that completely expresses what I know', 'A version of my relationships where I am fully seen', 'A version of my daily life where nothing is held back'],
+        reflections: [
+          'Peace is not a destination. It is the ground that was always underneath. The thought you chose + this idea = what? Notice the moment of combination. That moment is where the next version of your reality begins.',
+          'The work that fully expresses what you know already exists as an idea. The thought you carry about yourself is the only thing that determines whether it becomes actual. What thought would be most useful to carry?',
+          'To be fully seen requires being willing to be fully visible. The idea of being seen + the thought of who you currently are = a direction. Move in that direction, and reality reorganises itself around the movement.',
+          'Nothing held back is an enormous idea. The thought that meets it most usefully is not "I can do this" but "I am the kind of thing that does this." Notice the difference. The second thought is structural. It changes the system, not just the action.'
+        ]
+      }
+    ]
+  }
+};
+
+let currentGame = null;
+let currentQ = 0;
+
+function openGame(key) {
+  currentGame = games[key];
+  currentQ = 0;
+  document.getElementById('game-modal-title').textContent = currentGame.title;
+  document.getElementById('game-modal-sub').textContent = currentGame.sub;
+  renderQuestion();
+  document.getElementById('game-modal').classList.add('active');
+}
+
+function closeGame() {
+  document.getElementById('game-modal').classList.remove('active');
+  currentGame = null;
+  currentQ = 0;
+}
+
+function renderQuestion() {
+  if (!currentGame || currentQ >= currentGame.questions.length) {
+    document.getElementById('game-content').innerHTML = `
+      <div style="text-align:center; padding: 2rem 0;">
+        <p style="font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-style:italic; color:var(--gold); margin-bottom:1rem;">You have reached the centre.</p>
+        <p style="font-size:0.85rem; color:var(--muted); line-height:1.9; margin-bottom:1.5rem;">The inquiry is complete — not because the questions have ended, but because you have. The rest happens in the silence after.</p>
+        <button class="game-play-btn" onclick="closeGame()">Close & Sit With It</button>
+      </div>
+    `;
+    return;
+  }
+  const q = currentGame.questions[currentQ];
+  document.getElementById('game-content').innerHTML = `
+    <p class="game-question">${q.q}</p>
+    <div class="game-options">
+      ${q.options.map((o, i) => `<button class="game-option" onclick="selectOption(${i})">${o}</button>`).join('')}
+    </div>
+    <div class="game-reflection" id="reflection-box"></div>
+    <button class="game-next-btn" id="next-btn" onclick="nextQuestion()">
+      ${currentQ < currentGame.questions.length - 1 ? 'Continue →' : 'Complete Inquiry →'}
+    </button>
+  `;
+}
+
+function selectOption(i) {
+  document.querySelectorAll('.game-option').forEach(b => b.style.opacity = '0.4');
+  document.querySelectorAll('.game-option')[i].style.opacity = '1';
+  document.querySelectorAll('.game-option')[i].style.borderColor = 'var(--gold)';
+  document.querySelectorAll('.game-option')[i].style.color = 'var(--gold)';
+  const ref = document.getElementById('reflection-box');
+  ref.textContent = currentGame.questions[currentQ].reflections[i];
+  ref.style.display = 'block';
+  document.getElementById('next-btn').style.display = 'inline-block';
+}
+
+function nextQuestion() {
+  currentQ++;
+  renderQuestion();
+}
+
+// ===================== NEWSLETTER =====================
+function handleNewsletter() {
+  const email = document.getElementById('nl-email').value;
+  if (!email.includes('@')) {
+    alert('Please enter a valid email address.');
+    return;
+  }
+  alert('Thank you. The first transmission will arrive shortly.\n\n(Integrate with Mailchimp, ConvertKit, or Beehiiv for live deployment.)');
+  document.getElementById('nl-email').value = '';
+}
+</script>
 
 </body>
 </html>
