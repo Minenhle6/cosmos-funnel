@@ -5,154 +5,145 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SHAKETHEPLACE — Consciousness & Cosmological Theory</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --void: #030308;
-    --deep: #0a0a11;
-    --cosmos: #111116;
-    --lapis: #0f111a; 
-    --lapis-bright: #1c1f2e;
-    --crimson: #c1121f;
-    --crimson-dim: rgba(193, 18, 31, 0.1);
-    --crimson-mid: rgba(193, 18, 31, 0.4);
-    --purple: #4a4e69;
-    --white: #fdfdfd;
-    --muted: rgba(253,253,253,0.55);
-    --faint: rgba(253,253,253,0.06);
-    --border: rgba(193, 18, 31, 0.15);
+    --void: #050505;
+    --deep: #0a0a0c;
+    --cosmos: #121214;
+    --crimson: #d90429;
+    --crimson-dim: rgba(217, 4, 41, 0.1);
+    --crimson-mid: rgba(217, 4, 41, 0.4);
+    --white: #f8f9fa;
+    --muted: #a0a0a5;
+    --faint: rgba(255,255,255,0.08);
+    --border: rgba(217, 4, 41, 0.2);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  
   html { scroll-behavior: smooth; background: var(--void); }
 
   body {
     background: transparent;
     color: var(--white);
     font-family: 'Inter', sans-serif;
-    font-weight: 300;
+    font-weight: 400;
     overflow-x: hidden;
+    /* Scaled up font for deep reading and mobile interaction */
+    font-size: 1.15rem; 
     line-height: 1.85;
-    font-size: 1.1rem; 
   }
 
-  /* === SCROLL REVEAL ANIMATIONS === */
-  .reveal { opacity: 0; transform: translateY(40px); transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
+  /* === SCROLL REVEAL === */
+  .reveal { opacity: 0; transform: translateY(30px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
   .reveal.active { opacity: 1; transform: translateY(0); }
 
-  /* === CANVAS === */
-  #cosmos-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; opacity: 0.6; }
+  /* === BACKGROUND VORTEX === */
+  #cosmos-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; opacity: 0.4; }
 
   /* === NAVIGATION === */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
-    padding: 1.2rem 2rem; background: rgba(3, 3, 8, 0.85);
-    backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+    padding: 1.2rem 2rem; background: rgba(5, 5, 5, 0.85);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--faint); transition: all 0.4s ease;
   }
-  .nav-logo { font-family: 'Space Mono', monospace; font-size: 1.1rem; font-weight: 700; letter-spacing: 0.15em; color: var(--crimson); text-transform: uppercase; text-decoration: none; text-shadow: 0 0 15px rgba(193, 18, 31, 0.4); }
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
-  .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; transition: all 0.3s ease; position: relative; }
-  .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0%; height: 1px; background: var(--crimson); transition: width 0.3s ease; }
+  .nav-logo { font-family: 'Space Mono', monospace; font-size: 1.2rem; font-weight: 700; letter-spacing: 0.15em; color: var(--crimson); text-transform: uppercase; text-decoration: none; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s ease; }
   .nav-links a:hover { color: var(--crimson); }
-  .nav-links a:hover::after { width: 100%; }
+  
+  .btn-nav { padding: 0.6rem 1.4rem; font-family: 'Space Mono', monospace; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white); border: 1px solid var(--crimson); background: transparent; cursor: pointer; transition: 0.3s; }
+  .btn-nav:hover { background: var(--crimson); }
 
   /* === HERO === */
   #hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 8rem 1.5rem 4rem; position: relative; }
-  .hero-eyebrow { font-family: 'Space Mono', monospace; font-size: 0.75rem; letter-spacing: 0.4em; color: var(--crimson); text-transform: uppercase; margin-bottom: 2rem; animation: fadeInDown 1.5s ease; }
-  .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 8.5vw, 7.5rem); font-weight: 300; line-height: 1.1; letter-spacing: -0.02em; max-width: 1000px; margin-bottom: 2rem; background: linear-gradient(to bottom right, #fff, #999); -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: fadeInUp 1.5s ease 0.2s both; }
-  .hero-title em { font-style: italic; background: linear-gradient(to right, var(--crimson), #ff4d4d); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-  .hero-sub { font-size: 1.15rem; color: var(--muted); max-width: 650px; margin-bottom: 4rem; line-height: 1.9; animation: fadeInUp 1.5s ease 0.4s both; }
+  .hero-eyebrow { font-family: 'Space Mono', monospace; font-size: 0.85rem; letter-spacing: 0.3em; color: var(--crimson); text-transform: uppercase; margin-bottom: 2rem; }
+  .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(3.5rem, 10vw, 8.5rem); font-weight: 300; line-height: 1.05; letter-spacing: -0.02em; max-width: 1100px; margin-bottom: 2rem; }
+  .hero-title em { font-style: italic; color: var(--crimson); }
+  .hero-sub { font-size: 1.3rem; color: var(--muted); max-width: 700px; margin-bottom: 4rem; line-height: 1.8; }
   
-  .btn-primary, .btn-ghost { padding: 1.1rem 2.8rem; font-family: 'Inter', sans-serif; font-size: 0.8rem; letter-spacing: 0.25em; text-transform: uppercase; cursor: pointer; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); text-decoration: none; border: 1px solid var(--crimson); inline-size: max-content; }
-  .btn-primary { background: var(--crimson); color: var(--white); font-weight: 500; }
-  .btn-primary:hover { background: transparent; color: var(--crimson); }
-  .btn-ghost { background: transparent; color: var(--white); border-color: var(--purple); }
-  .btn-ghost:hover { background: var(--crimson); color: var(--white); border-color: var(--crimson); }
+  .btn-primary, .btn-ghost { padding: 1.2rem 3rem; font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; transition: all 0.3s; text-decoration: none; display: inline-flex; justify-content: center; align-items: center; }
+  .btn-primary { background: var(--crimson); color: var(--white); border: 1px solid var(--crimson); }
+  .btn-primary:hover { background: #ff0a33; border-color: #ff0a33; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(217, 4, 41, 0.2); }
+  .btn-ghost { background: transparent; color: var(--white); border: 1px solid var(--muted); }
+  .btn-ghost:hover { border-color: var(--white); }
 
-  @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-  @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
-
-  /* === THEORIES SHELF === */
-  #theories { padding: 8rem 2rem; max-width: 1400px; margin: 0 auto; }
-  .section-label { font-family: 'Space Mono', monospace; font-size: 0.75rem; letter-spacing: 0.35em; color: var(--crimson); text-transform: uppercase; margin-bottom: 4rem; display: flex; align-items: center; gap: 1.5rem; }
+  /* === COMMERCE ENGINE (VOLUMES & PDFs) === */
+  #commerce { padding: 8rem 2rem; max-width: 1400px; margin: 0 auto; }
+  .section-label { font-family: 'Space Mono', monospace; font-size: 0.85rem; letter-spacing: 0.3em; color: var(--crimson); text-transform: uppercase; margin-bottom: 4rem; display: flex; align-items: center; gap: 1.5rem; }
   .section-label::after { content: ''; flex: 1; height: 1px; background: var(--faint); }
-  .theories-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
-
-  .theory-card { background: rgba(10, 10, 17, 0.6); backdrop-filter: blur(10px); border: 1px solid var(--faint); padding: 4rem 2.5rem; position: relative; overflow: hidden; transition: all 0.5s ease; cursor: pointer; text-decoration: none; display: block; color: inherit; }
-  .theory-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(to right, var(--crimson), var(--purple)); transform: scaleX(0); transform-origin: left; transition: transform 0.6s ease; }
-  .theory-card:hover::before { transform: scaleX(1); }
-  .theory-card:hover { border-color: var(--crimson-mid); transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.7); background: rgba(10, 10, 17, 0.9); }
-
-  .theory-number { font-family: 'Space Mono', monospace; font-size: 0.7rem; letter-spacing: 0.3em; color: var(--crimson); margin-bottom: 1.5rem; }
-  .theory-title { font-family: 'Cormorant Garamond', serif; font-size: 2.6rem; font-weight: 300; line-height: 1.15; margin-bottom: 1rem; }
-  .theory-subtitle { font-size: 0.8rem; color: var(--muted); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 2rem; }
-  .theory-desc { font-size: 1.05rem; color: var(--muted); line-height: 1.8; margin-bottom: 3rem; }
-  .theory-meta { display: flex; justify-content: space-between; font-family: 'Space Mono', monospace; font-size: 0.65rem; color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase;}
-  .theory-meta span { color: var(--crimson); display: block; margin-top: 0.3rem;}
-
-  /* === THE COMMERCE ENGINE === */
-  #commerce { padding: 8rem 2rem; background: var(--deep); border-top: 1px solid var(--faint); border-bottom: 1px solid var(--faint); }
-  .commerce-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 6rem; }
   
-  .vault-product { background: var(--cosmos); border: 1px solid var(--faint); padding: 3rem 2.5rem; text-align: left; position: relative; transition: all 0.3s ease; }
-  .vault-product:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,0,0,0.6); border-color: var(--crimson); }
+  .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2.5rem; margin-bottom: 6rem; }
   
-  .armory-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 6rem; }
-  .armory-item { text-decoration: none; border: 1px solid var(--faint); padding: 2rem; background: var(--void); transition: all 0.3s ease; display: block; }
-  .armory-item:hover { border-color: var(--crimson); background: var(--crimson-dim); transform: translateY(-3px); }
+  .product-card { background: var(--deep); border: 1px solid var(--faint); padding: 3rem 2.5rem; transition: all 0.4s ease; display: flex; flex-direction: column; }
+  .product-card:hover { border-color: var(--crimson-mid); transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+  .product-tag { font-family: 'Space Mono', monospace; font-size: 0.75rem; color: var(--crimson); text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 1.5rem; }
+  .product-title { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 300; line-height: 1.1; margin-bottom: 1rem; color: var(--white); }
+  .product-desc { font-size: 1.1rem; color: var(--muted); margin-bottom: 3rem; flex-grow: 1; }
+  .product-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--faint); padding-top: 1.5rem; }
+  .product-price { font-family: 'Space Mono', monospace; font-size: 1.5rem; color: var(--white); }
 
-  .blur-text-wall { position: relative; margin-top: 2rem; border-left: 2px solid var(--crimson); padding-left: 2rem; }
-  .blur-text-wall .blurred-content { filter: blur(6px); user-select: none; color: var(--muted); font-size: 1rem; line-height: 2; }
-  .blur-text-wall .blur-overlay { position: absolute; bottom: 0; left: 0; right: 0; top: 0; background: linear-gradient(to bottom, transparent 0%, var(--deep) 80%); display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding-bottom: 2rem; gap: 1.5rem; }
-
-  /* === THE BLUE DECK ORACLE === */
-  #oracle { padding: 8rem 2rem; background: linear-gradient(to bottom, var(--deep), var(--lapis)); border-top: 1px solid var(--faint); text-align: center; }
-  .oracle-container { max-width: 1000px; margin: 0 auto; }
-  .oracle-title { font-family: 'Cormorant Garamond', serif; font-size: 3.2rem; color: var(--white); margin-bottom: 1rem; font-weight: 300; }
-  .oracle-sub { font-size: 1.1rem; color: rgba(255,255,255,0.6); max-width: 600px; margin: 0 auto 3rem; line-height: 1.8; }
+  /* === STRIPE MEMBERSHIP STRIP === */
+  #memberships { background: var(--cosmos); padding: 8rem 2rem; border-top: 1px solid var(--faint); }
+  .membership-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; }
   
-  .card-container { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 3rem; perspective: 1000px; }
-  .tarot-card { width: 180px; height: 290px; position: relative; transition: transform 0.8s; transform-style: preserve-3d; cursor: pointer; }
-  .tarot-card.flipped { transform: rotateY(180deg); }
+  .tier-card { background: var(--void); border: 1px solid var(--faint); padding: 4rem 3rem; position: relative; }
+  .tier-card.pro { border-color: var(--crimson); box-shadow: 0 0 30px rgba(217, 4, 41, 0.1); }
+  .tier-card.pro::before { content: 'FULL ACCESS'; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--crimson); color: var(--white); font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; padding: 0.4rem 1.2rem; text-transform: uppercase; }
   
-  .card-face { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 8px; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 1.2rem; text-align: center; border: 1px solid var(--faint); box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
-  .card-back { background: repeating-linear-gradient(45deg, var(--lapis-bright), var(--lapis-bright) 10px, var(--lapis) 10px, var(--lapis) 20px); border: 1px solid var(--purple); }
-  .card-back::after { content: '✧'; font-size: 2.5rem; color: var(--white); opacity: 0.3; }
+  .tier-name { font-family: 'Space Mono', monospace; font-size: 0.85rem; color: var(--muted); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1rem; }
+  .tier-price { font-family: 'Cormorant Garamond', serif; font-size: 4rem; font-weight: 300; color: var(--white); line-height: 1; margin-bottom: 0.5rem; }
+  .tier-sub { font-size: 0.9rem; color: var(--muted); margin-bottom: 3rem; }
   
-  .card-front { background: var(--cosmos); transform: rotateY(180deg); border: 1px solid var(--crimson); }
-  .card-name { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--white); margin-bottom: 1rem; border-bottom: 1px solid var(--faint); padding-bottom: 0.5rem; width: 100%; }
-  .card-keyword { font-family: 'Space Mono', monospace; font-size: 0.65rem; color: var(--crimson); text-transform: uppercase; letter-spacing: 0.1em; }
+  .tier-features { list-style: none; margin-bottom: 3rem; }
+  .tier-features li { font-size: 1.05rem; color: var(--white); margin-bottom: 1rem; display: flex; gap: 1rem; align-items: flex-start; }
+  .tier-features li::before { content: '✦'; color: var(--crimson); font-size: 0.9rem; margin-top: 0.2rem; }
+  .tier-btn { width: 100%; padding: 1.2rem; font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; cursor: pointer; transition: 0.3s; background: transparent; border: 1px solid var(--muted); color: var(--white); }
+  .tier-card.pro .tier-btn { background: var(--crimson); border-color: var(--crimson); }
+  .tier-btn:hover { background: var(--white); color: var(--void); border-color: var(--white); }
 
-  #reading-output { background: rgba(0,0,0,0.6); border-left: 2px solid var(--crimson); padding: 2.5rem; font-size: 1.15rem; line-height: 1.9; color: var(--white); max-width: 800px; margin: 0 auto; text-align: left; display: none; animation: fadeInUp 1s ease; }
-  #reading-output p { margin-bottom: 1.2rem; }
-  .tea-alert { color: var(--crimson); font-family: 'Space Mono', monospace; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 1.2rem; display: block; }
-
-  /* === PAPER MODAL === */
-  #paper-modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(3,3,8,0.98); z-index: 1000; overflow-y: auto; opacity: 0; transition: opacity 0.4s ease; }
+  /* === PAPER READING MODAL (LARGE TEXT) === */
+  #paper-modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(5,5,5,0.98); z-index: 1000; overflow-y: auto; opacity: 0; transition: opacity 0.3s ease; }
   #paper-modal.active { display: block; opacity: 1; }
-  .paper-modal-inner { max-width: 800px; margin: 0 auto; padding: 6rem 1.5rem; }
   
-  .volume-nav { background: var(--cosmos); border: 1px solid var(--faint); padding: 1.5rem; display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem; font-family: 'Space Mono', monospace; font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
-  .volume-nav span.highlight { color: var(--crimson); font-weight: bold; }
+  .modal-toolbar { position: sticky; top: 0; background: rgba(5,5,5,0.95); border-bottom: 1px solid var(--faint); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; z-index: 10; backdrop-filter: blur(10px); }
+  .modal-toolbar span { font-family: 'Space Mono', monospace; font-size: 0.75rem; letter-spacing: 0.2em; color: var(--muted); text-transform: uppercase; }
+  
+  .modal-content { max-width: 900px; margin: 0 auto; padding: 6rem 1.5rem; }
+  .chapter-nav { border-left: 2px solid var(--crimson); padding-left: 2rem; margin-bottom: 4rem; }
+  .chapter-nav h4 { font-family: 'Space Mono', monospace; font-size: 0.85rem; color: var(--crimson); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
+  
+  .paper-text { font-size: 1.25rem; line-height: 1.9; color: rgba(255,255,255,0.85); } /* SCALED UP FOR MOBILE READING */
+  .paper-text h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 6vw, 4.5rem); font-weight: 300; line-height: 1.1; margin-bottom: 1.5rem; color: var(--white); }
+  .paper-text h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 300; margin: 4rem 0 1.5rem; color: var(--crimson); border-bottom: 1px solid var(--faint); padding-bottom: 1rem; }
+  .paper-text p { margin-bottom: 2rem; }
+  .paper-text .pullquote { border-left: 3px solid var(--crimson); padding-left: 2rem; margin: 3rem 0; font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-style: italic; color: var(--white); }
 
-  .paper-body { font-size: 1.2rem; line-height: 2.1; color: rgba(250,250,255,0.9); font-weight: 300;}
-  .paper-body h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 300; margin: 4rem 0 1.5rem; color: var(--white); border-bottom: 1px solid var(--faint); padding-bottom: 1rem; }
-  .paper-body p { margin-bottom: 2rem; }
-  .paper-close-btn { background: transparent; color: var(--muted); border: 1px solid var(--faint); padding: 0.6rem 1.6rem; cursor: pointer; transition: 0.3s; font-family: 'Space Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.2em;}
-  .paper-close-btn:hover { color: var(--crimson); border-color: var(--crimson); }
+  .paywall-blur { position: relative; margin-top: 3rem; }
+  .paywall-blur .blurred { filter: blur(6px); opacity: 0.4; pointer-events: none; }
+  .paywall-overlay { position: absolute; bottom: 0; left: 0; right: 0; height: 100%; background: linear-gradient(to bottom, transparent, var(--void) 80%); display: flex; flex-direction: column; justify-content: flex-end; align-items: center; padding-bottom: 4rem; }
+
+  /* === PRINT STYLES FOR PDF GENERATION === */
+  @media print {
+    body * { visibility: hidden; }
+    #paper-modal, #paper-modal * { visibility: visible; }
+    #paper-modal { position: absolute; left: 0; top: 0; width: 100%; background: #fff; color: #000; }
+    .modal-toolbar, .paywall-blur, .btn-primary { display: none !important; }
+    .paper-text { color: #000; font-size: 12pt; line-height: 1.5; }
+    .paper-text h1, .paper-text h2 { color: #000; }
+    .paper-text .pullquote { border-color: #000; color: #000; }
+  }
 
   @media (max-width: 900px) {
     .nav-links { display: none; }
-    #hero { padding: 6rem 1rem; }
-    #theories, #oracle, #commerce { padding: 5rem 1.5rem; }
-    .card-container { gap: 1rem; }
-    .tarot-card { width: 110px; height: 180px; }
-    .card-name { font-size: 0.85rem; margin-bottom: 0.5rem; }
-    .card-keyword { font-size: 0.5rem; }
-    .card-face { padding: 0.5rem; }
-    .card-back::after { font-size: 1.8rem; }
+    #hero { padding: 6rem 1.5rem; }
+    .hero-buttons { flex-direction: column; width: 100%; }
+    .btn-primary, .btn-ghost { width: 100%; }
+    #commerce, #memberships { padding: 5rem 1.5rem; }
+    .paper-text { font-size: 1.15rem; } /* Slightly adjusted for very small screens, still large */
   }
 </style>
 </head>
@@ -162,187 +153,173 @@
 
 <nav>
   <a href="#" class="nav-logo">SHAKETHEPLACE</a>
-  <ul class="nav-links">
-    <li><a href="#theories">Volumes</a></li>
-    <li><a href="#commerce">The Vault</a></li>
-    <li><a href="#oracle">The Blue Deck</a></li>
-  </ul>
-  <a href="#commerce" class="btn-ghost" style="padding: 0.5rem 1.2rem; font-size: 0.65rem;">Access Architecture</a>
+  <div style="display: flex; gap: 1rem;">
+    <button class="btn-nav" onclick="document.getElementById('memberships').scrollIntoView()">Subscribe</button>
+  </div>
 </nav>
 
 <section id="hero">
-  <p class="hero-eyebrow">Cosmological & Consciousness Theory</p>
+  <p class="hero-eyebrow">The Architecture of Consciousness</p>
   <h1 class="hero-title">The Universe Is Not<br>Outside of <em>You</em></h1>
-  <p class="hero-sub">Original 366-page theoretical masterworks mapping the fractal architecture of existence, structural downloads, and real-time algorithmic divination.</p>
-  <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; z-index: 2; position: relative;">
-    <a href="#theories" class="btn-primary">Read the Archives</a>
-    <a href="#commerce" class="btn-ghost">Enter the Vault</a>
-  </div>
-</section>
-
-<section id="theories">
-  <p class="section-label reveal">Complete Masterworks</p>
-  <div class="theories-grid">
-    <a class="theory-card reveal" onclick="openPaper('eie'); return false;" href="#">
-      <p class="theory-number">Volume I · 2025</p>
-      <h2 class="theory-title">Everything<br>Is Everything</h2>
-      <p class="theory-subtitle">Fractal · Holographic · Quintamazed</p>
-      <p class="theory-desc">A sweeping analysis proving the universe is not a collection of separate objects, but a single, self-similar, fractal reality system. (Full Volume).</p>
-      <div class="theory-meta">
-        <div>Pages <span>366</span></div>
-        <div>Status <span>Published</span></div>
-      </div>
-    </a>
-    <a class="theory-card reveal" style="transition-delay: 0.1s;" onclick="openPaper('tir'); return false;" href="#">
-      <p class="theory-number">Volume II · 2025</p>
-      <h2 class="theory-title">Thoughts + Ideas<br>= Reality</h2>
-      <p class="theory-subtitle">Cognitive · Quantum · Generative</p>
-      <p class="theory-desc">An extensive textbook formalising the mechanism by which thought and idea combine to collapse possibility into the experienced physical world.</p>
-      <div class="theory-meta">
-        <div>Pages <span>366</span></div>
-        <div>Status <span>Published</span></div>
-      </div>
-    </a>
+  <p class="hero-sub">Deep, multi-chapter cosmological masterworks mapping the fractal structures of reality. Pure research. No ads. No noise.</p>
+  <div class="hero-buttons">
+    <a href="#commerce" class="btn-primary">Access the Library</a>
+    <a href="#memberships" class="btn-ghost">Become a Scholar</a>
   </div>
 </section>
 
 <section id="commerce">
-  <div style="max-width: 1400px; margin: 0 auto;">
+  <p class="section-label reveal">Single Acquisitions</p>
+  <div class="grid-2 reveal">
     
-    <p class="section-label reveal">The Digital Vault</p>
-    <div class="commerce-grid reveal">
-      
-      <div class="vault-product">
-        <div style="font-family: 'Space Mono', monospace; font-size: 0.65rem; color: var(--crimson); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1rem;">Curriculum Archive</div>
-        <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; margin-bottom: 1rem; color: var(--white);">The Shaka Paradigm:<br>Pre-Colonial Architectures</h3>
-        <p style="font-size: 0.9rem; color: var(--muted); margin-bottom: 2rem; line-height: 1.7;">A high-level academic module deconstructing late 19th-century European colonisation narratives and mapping the strategic, ancestral mastery of the Zulu Kingdom.</p>
-        <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--faint); padding-top: 1.5rem;">
-          <span style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--white);">$45</span>
-          <button class="btn-primary" style="padding: 0.6rem 1.2rem; font-size: 0.65rem;" onclick="window.location.href='#'">Secure Download</button>
-        </div>
+    <div class="product-card">
+      <p class="product-tag">Volume I · 366 Pages</p>
+      <h2 class="product-title">Everything Is Everything</h2>
+      <p class="product-desc">A deep-dive analysis proving the universe is a single, self-similar fractal reality system. Featuring the core geometry of Quintamazement.</p>
+      <div style="display: flex; gap: 1rem; margin-bottom: 2rem;">
+        <button class="btn-ghost" style="padding: 0.6rem 1rem; font-size: 0.75rem; width: 100%;" onclick="openPaper('eie')">Read Excerpt</button>
       </div>
-
-      <div class="vault-product" style="border-color: var(--purple);">
-        <div style="font-family: 'Space Mono', monospace; font-size: 0.65rem; color: var(--purple); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1rem;">Algorithmic Frameworks</div>
-        <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; margin-bottom: 1rem; color: var(--white);">XAUUSD & BTC<br>Logic Scripts</h3>
-        <p style="font-size: 0.9rem; color: var(--muted); margin-bottom: 2rem; line-height: 1.7;">Raw MQL5 and Python code structures utilizing Smart Money Concepts for high-frequency market analysis. Do not trade on emotion; trade on mathematics.</p>
-        <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--faint); padding-top: 1.5rem;">
-          <span style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--white);">$150</span>
-          <button class="btn-ghost" style="padding: 0.6rem 1.2rem; font-size: 0.65rem; border-color: var(--purple); color: var(--white);" onclick="window.location.href='#'">Download Code</button>
-        </div>
+      <div class="product-footer">
+        <span class="product-price">$4.99</span>
+        <button class="btn-primary" style="padding: 0.6rem 1.5rem; font-size: 0.8rem;" onclick="checkout('https://buy.stripe.com/test_paper_1')">Buy Paper</button>
       </div>
-
     </div>
 
-    <p class="section-label reveal">1-On-1 Diagnostics</p>
-    <div class="reveal" style="background: linear-gradient(to right, var(--void), var(--deep)); border: 1px solid var(--faint); padding: 4rem 2rem; text-align: center; margin-bottom: 6rem;">
-      <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--white); font-weight: 300; margin-bottom: 1rem;">Private Cosmological Tutoring</h2>
-      <p style="font-size: 1.1rem; color: var(--muted); max-width: 600px; margin: 0 auto 2.5rem; line-height: 1.8;">Secure a 60-minute direct digital transmission. We will map your current psychological geometry, align your educational and material goals, and deploy actionable frameworks.</p>
-      <button class="btn-primary" onclick="window.location.href='#'">View Master Schedule</button>
+    <div class="product-card">
+      <p class="product-tag">Volume II · 366 Pages</p>
+      <h2 class="product-title">Thoughts + Ideas = Reality</h2>
+      <p class="product-desc">An extensive psychological textbook formalising the exact mechanism by which thought and idea combine to collapse possibility into physical existence.</p>
+      <div style="display: flex; gap: 1rem; margin-bottom: 2rem;">
+        <button class="btn-ghost" style="padding: 0.6rem 1rem; font-size: 0.75rem; width: 100%;" onclick="openPaper('tir')">Read Excerpt</button>
+      </div>
+      <div class="product-footer">
+        <span class="product-price">$4.99</span>
+        <button class="btn-primary" style="padding: 0.6rem 1.5rem; font-size: 0.8rem;" onclick="checkout('https://buy.stripe.com/test_paper_2')">Buy Paper</button>
+      </div>
     </div>
 
-    <p class="section-label reveal">The Blueprint (Hardware & Software)</p>
-    <div class="armory-grid reveal">
-      <a href="#" class="armory-item">
-        <div style="color: var(--crimson); font-family: 'Space Mono', monospace; font-size: 0.6rem; text-transform: uppercase; margin-bottom: 0.5rem;">The Processing Core</div>
-        <h4 style="font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--white); margin-bottom: 0.5rem; font-weight: 400;">Alienware m18 r2</h4>
-        <p style="font-size: 0.85rem; color: var(--muted); line-height: 1.6;">The exact high-performance rig powering the algorithmic frameworks and architecture.</p>
-      </a>
-      <a href="#" class="armory-item">
-        <div style="color: var(--crimson); font-family: 'Space Mono', monospace; font-size: 0.6rem; text-transform: uppercase; margin-bottom: 0.5rem;">Immersive Engine</div>
-        <h4 style="font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--white); margin-bottom: 0.5rem; font-weight: 400;">Meta Quest 3</h4>
-        <p style="font-size: 0.85rem; color: var(--muted); line-height: 1.6;">Utilized for spatial visualization of fractal geometry and deeper dimensional focus.</p>
-      </a>
-      <a href="#" class="armory-item">
-        <div style="color: var(--crimson); font-family: 'Space Mono', monospace; font-size: 0.6rem; text-transform: uppercase; margin-bottom: 0.5rem;">Frequency Manipulation</div>
-        <h4 style="font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--white); margin-bottom: 0.5rem; font-weight: 400;">Ableton Live 11</h4>
-        <p style="font-size: 0.85rem; color: var(--muted); line-height: 1.6;">The digital audio workstation used to bend reality and sculpt the vocal frequencies.</p>
-      </a>
-    </div>
-
-    <p class="section-label reveal">Premium Transmissions</p>
-    <div class="reveal" style="max-width: 800px; margin: 0 auto; text-align: left;">
-      <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; margin-bottom: 1rem; color: var(--white);">The Golden Ratio & Cognitive Architecture</h3>
-      <p style="color: var(--muted); font-size: 1.1rem; line-height: 1.9; margin-bottom: 1rem;">To fully grasp how consciousness expands, we must observe the mathematics of the cosmos. The universe does not speak in abstract concepts; it speaks in numbers, geometry, and vibration. Human evolution is bound to the exact same geometric laws that govern the formation of galaxies...</p>
-      
-      <div class="blur-text-wall">
-        <div class="blurred-content">
-          From the microscopic structural orientation of our DNA to the sweeping trajectories of galactic clusters, existence mirrors this exact spiral. True psychological integration occurs when the individual aligns their core cognitive patterns back to this fundamental universal frequency. Reality is dictated by the interaction of energy and light. Trauma is a low-frequency density; enlightenment and material abundance are high-frequency bandwidths on the electromagnetic spectrum. You are a biological antenna.
-        </div>
-        <div class="blur-overlay">
-          <p style="font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-style: italic; color: var(--white); text-align: center; margin: 0;">This transmission is structurally locked.</p>
-          <button class="btn-primary" onclick="window.location.href='#'">Unlock Full Thesis ($5)</button>
-        </div>
+    <div class="product-card" style="border-color: var(--crimson); grid-column: 1 / -1; align-items: center; text-align: center;">
+      <p class="product-tag">The Master Bundle</p>
+      <h2 class="product-title">The Complete Cosmology PDF</h2>
+      <p class="product-desc" style="max-width: 600px;">Instantly download the complete, unredacted PDF editions of both masterworks, fully formatted for offline reading, annotation, and citation.</p>
+      <div class="product-footer" style="width: 100%; max-width: 400px; justify-content: center; gap: 2rem; border-top: none;">
+        <span class="product-price" style="font-size: 2rem;">$12.00</span>
+        <button class="btn-primary" onclick="checkout('https://buy.stripe.com/test_bundle_pdf')">Secure Download</button>
       </div>
     </div>
 
   </div>
+
+  <p class="section-label reveal">Historical Archives</p>
+  <div class="grid-2 reveal" style="grid-template-columns: 1fr;">
+    <div class="product-card" style="flex-direction: row; align-items: center; gap: 3rem; flex-wrap: wrap;">
+      <div style="flex: 1; min-width: 300px;">
+        <p class="product-tag">Academic Module</p>
+        <h2 class="product-title">The Shaka Paradigm</h2>
+        <p class="product-desc" style="margin-bottom: 0;">A high-level educational module deconstructing 19th-century European colonisation narratives and mapping the tactical mastery of the Zulu Kingdom in KwaZulu-Natal. Bilingual notes included.</p>
+      </div>
+      <div style="text-align: right;">
+        <span class="product-price" style="display: block; font-size: 2.5rem; margin-bottom: 1rem;">$19.99</span>
+        <button class="btn-primary" onclick="checkout('https://buy.stripe.com/test_history_module')">Acquire Module</button>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section id="oracle">
-  <div class="oracle-container reveal">
-    <p class="section-label" style="justify-content: center;">Algorithmic Divination</p>
-    <h2 class="oracle-title">The Blue Deck Transmission</h2>
-    <p class="oracle-sub">Sit still. Focus your intent. Let the algorithm pull the frequencies. This is raw, unfiltered tea based on the cosmic architecture of where you stand right now.</p>
+<section id="memberships">
+  <div style="text-align: center; margin-bottom: 5rem;">
+    <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; margin-bottom: 1rem;">Autopilot Access</h2>
+    <p style="font-size: 1.15rem; color: var(--muted); max-width: 600px; margin: 0 auto;">Skip the individual paywalls. Fund independent research and unlock the entire architecture of the site instantly.</p>
+  </div>
+
+  <div class="membership-grid">
     
-    <div style="margin-bottom: 2rem;">
-        <button class="btn-primary" onclick="drawCards()" id="draw-btn">Pull 3 Cards</button>
+    <div class="tier-card">
+      <p class="tier-name">Reader</p>
+      <div class="tier-price">$9<span style="font-size: 1rem; color: var(--muted);">/mo</span></div>
+      <p class="tier-sub">For serious inquiry and continuous reading.</p>
+      <ul class="tier-features">
+        <li>Full digital access to all 366-page volumes.</li>
+        <li>Bypass all paywalls instantly.</li>
+        <li>Early access to new cosmological theories.</li>
+      </ul>
+      <button class="tier-btn" onclick="checkout('https://buy.stripe.com/test_sub_reader')">Subscribe via Stripe</button>
     </div>
 
-    <div class="card-container" id="card-spread">
-      </div>
+    <div class="tier-card pro">
+      <p class="tier-name" style="color: var(--crimson);">Scholar</p>
+      <div class="tier-price">$29<span style="font-size: 1rem; color: var(--muted);">/mo</span></div>
+      <p class="tier-sub">The ultimate academic and research tier.</p>
+      <ul class="tier-features">
+        <li><strong>Everything in Reader.</strong></li>
+        <li>Unrestricted PDF Downloads of all works.</li>
+        <li>Access to the 11/2 Master Resonance formulas.</li>
+        <li>Citation rights for independent academic use.</li>
+      </ul>
+      <button class="tier-btn" onclick="checkout('https://buy.stripe.com/test_sub_scholar')">Subscribe via Stripe</button>
+    </div>
 
-    <div id="reading-output"></div>
   </div>
 </section>
 
 <div id="paper-modal">
-  <div class="paper-modal-inner">
-    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 2rem; margin-bottom: 2rem;">
-      <span style="font-family: 'Space Mono'; font-size: 0.75rem; color: var(--crimson); letter-spacing: 0.2em; text-transform: uppercase;">SHAKETHEPLACE Archives</span>
-      <button class="paper-close-btn" onclick="closePaper()">Close Volume</button>
+  <div class="modal-toolbar">
+    <span id="modal-doc-title">Document Viewer</span>
+    <div style="display: flex; gap: 1rem;">
+      <button class="btn-nav" onclick="generatePDF()">Generate PDF</button>
+      <button class="btn-nav" style="border-color: var(--muted);" onclick="closePaper()">Close</button>
+    </div>
+  </div>
+  
+  <div class="modal-content">
+    <div class="chapter-nav">
+      <h4>Volume Directory</h4>
+      <p style="color: var(--muted); font-size: 0.9rem;">Chapter I: The Architecture<br>Chapter II: Mechanisms of Collapse<br><span style="color: var(--crimson);">[Locked] Chapter III-XII</span></p>
     </div>
     
-    <div class="volume-nav">
-        <span>Masterwork Edition</span>
-        <span>Displaying Excerpt: <span class="highlight">Pages 1—4 of 366</span></span>
-    </div>
-
-    <div id="paper-body-content"></div>
+    <div class="paper-text" id="paper-text-container">
+      </div>
   </div>
 </div>
 
 <script>
-// === VORTEX CANVAS ENGINE ===
+// === STRIPE REDIRECT LOGIC ===
+function checkout(stripeUrl) {
+  // This simulates the redirect. In production, this goes straight to Stripe.
+  alert("Redirecting to secure Stripe Checkout:\n\n" + stripeUrl);
+  // window.location.href = stripeUrl; 
+}
+
+// === VORTEX CANVAS BACKGROUND ===
 const canvas = document.getElementById('cosmos-canvas');
 const ctx = canvas.getContext('2d');
 let particles = [];
-
 function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
 function initVortex() {
   particles = [];
-  for (let i = 0; i < 200; i++) {
+  for (let i = 0; i < 150; i++) {
     particles.push({
       angle: Math.random() * Math.PI * 2,
-      radius: Math.random() * 1000,
-      speed: (Math.random() * 0.002) + 0.0005,
+      radius: Math.random() * 1200,
+      speed: (Math.random() * 0.001) + 0.0002,
       size: Math.random() * 1.5 + 0.5,
-      color: Math.random() > 0.8 ? '#c1121f' : '#4a4e69'
+      color: Math.random() > 0.9 ? '#d90429' : '#ffffff'
     });
   }
 }
 function drawVortex() {
-  ctx.fillStyle = 'rgba(3, 3, 8, 0.15)';
+  ctx.fillStyle = 'rgba(5, 5, 5, 0.2)';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   const cx = canvas.width / 2, cy = canvas.height / 2;
   particles.forEach(p => {
     p.angle += p.speed;
-    p.radius -= 0.1;
-    if (p.radius < 0) p.radius = 1000;
-    const x = cx + Math.cos(p.angle) * p.radius;
-    const y = cy + Math.sin(p.angle) * p.radius;
-    ctx.beginPath(); ctx.arc(x, y, p.size, 0, Math.PI * 2);
-    ctx.fillStyle = p.color; ctx.globalAlpha = Math.min(1, p.radius / 200); ctx.fill();
+    p.radius -= 0.2;
+    if (p.radius < 0) p.radius = 1200;
+    ctx.beginPath(); 
+    ctx.arc(cx + Math.cos(p.angle) * p.radius, cy + Math.sin(p.angle) * p.radius, p.size, 0, Math.PI * 2);
+    ctx.fillStyle = p.color; 
+    ctx.globalAlpha = Math.min(1, p.radius / 300); 
+    ctx.fill();
   });
   requestAnimationFrame(drawVortex);
 }
@@ -352,95 +329,77 @@ resizeCanvas(); initVortex(); drawVortex();
 // === SCROLL REVEAL ===
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
-}, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+}, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-// === BLUE DECK AI TAROT LOGIC ===
-const tarotDeck = [
-  { name: "The Ancestor", keyword: "Root / Grounding", meaning: "You are trying to build the roof while the foundation is floating. Ground your energy. Look to your roots to find the answer to your current anxiety." },
-  { name: "The Vortex", keyword: "11/2 Master Resonance", meaning: "High frequency incoming. You are acting as a bridge right now. The universe is speaking in numbers and synchronicities. Stop ignoring the signs—you already know what they mean." },
-  { name: "Phi (Golden Ratio)", keyword: "Perfect Expansion", meaning: "Everything is unfolding in the exact mathematical proportion it needs to. Stop forcing things. The growth is already happening perfectly. Let it breathe." },
-  { name: "The Tower of Illusion", keyword: "Necessary Destruction", meaning: "Something you thought was stable is collapsing, and honestly? Good riddance. It was built on a lie anyway. Let it burn so you can build something real." },
-  { name: "The High Priestess", keyword: "Deep Intuition", meaning: "Stop asking everybody else for advice. Your intuition has been screaming at you for three weeks. Sit in silence. The tea is already inside your own cup." },
-  { name: "The Mirror", keyword: "Reflection / Projection", meaning: "That thing that is annoying you intensely about someone else? Yeah, that's you. It's a projection. Check your own reflection before you start throwing stones." },
-  { name: "The Void", keyword: "Infinite Potential", meaning: "You are standing in the empty space between chapters. It feels like nothing is happening, but it is actually the space where literally anything can be generated. Do not panic in the dark." },
-  { name: "The Alchemist", keyword: "Algorithmic Control", meaning: "You have all the ingredients. You have the code. You have the rhythm. Stop waiting for permission and start combining what you know to extract the gold." }
-];
-
-function drawCards() {
-  const container = document.getElementById('card-spread');
-  const output = document.getElementById('reading-output');
-  const btn = document.getElementById('draw-btn');
-  
-  btn.innerText = "Reshuffling the Cosmos...";
-  btn.disabled = true;
-  container.innerHTML = '';
-  output.style.display = 'none';
-
-  let shuffled = tarotDeck.sort(() => 0.5 - Math.random());
-  let drawn = shuffled.slice(0, 3);
-
-  drawn.forEach((card, index) => {
-    setTimeout(() => {
-      container.innerHTML += `
-        <div class="tarot-card" id="card-${index}">
-          <div class="card-face card-back"></div>
-          <div class="card-face card-front">
-            <div class="card-name">${card.name}</div>
-            <div class="card-keyword">${card.keyword}</div>
-          </div>
-        </div>
-      `;
-    }, index * 200);
-  });
-
-  setTimeout(() => {
-    for (let i = 0; i < 3; i++) {
-      setTimeout(() => {
-        document.getElementById(`card-${i}`).classList.add('flipped');
-      }, i * 400);
-    }
-    
-    setTimeout(() => {
-      generateReading(drawn);
-      btn.innerText = "Pull Again";
-      btn.disabled = false;
-    }, 1500);
-
-  }, 800);
-}
-
-function generateReading(cards) {
-  const output = document.getElementById('reading-output');
-  output.innerHTML = `
-    <span class="tea-alert">✦ Spilling the Cosmic Tea ✦</span>
-    <p><strong>Past/Root: ${cards[0].name}.</strong> ${cards[0].meaning}</p>
-    <p><strong>Present/Action: ${cards[1].name}.</strong> ${cards[1].meaning}</p>
-    <p><strong>Future/Potential: ${cards[2].name}.</strong> ${cards[2].meaning}</p>
-    <p style="margin-top: 2rem; color: var(--white); font-style: italic;">"The algorithm never lies. Take what resonates, leave what doesn't. Now get to work."</p>
-  `;
-  output.style.display = 'block';
-  output.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-}
-
-// === PAPER MODALS ===
+// === PAPER CONTENT & PDF LOGIC ===
 const papers = {
   eie: {
     title: 'Everything Is Everything',
-    body: `<h2>Volume I: Introduction</h2><p>This volume spans 366 pages of dense cosmological architecture. What follows is the opening excerpt.</p><p>No matter what scale of reality you examine, you find the same patterns. The branching of a river delta mirrors the branching of the bronchial tree. The spiral of a galaxy mirrors the spiral of a nautilus shell. These are not coincidences of aesthetic taste. They are signatures.</p><p>Fractal geometry — the mathematics of self-similar patterns at every scale — is the geometry of reality as such. A fractal is a system in which each part contains a representation of the whole. Zoom in, and you find the same structure. Zoom out, and the same.</p><p style="text-align:center; color: var(--white); font-style: italic; margin-top: 3rem;">— Remaining 362 pages locked. Secure hardcopy to continue reading. —</p>`
+    url: 'https://buy.stripe.com/test_paper_1',
+    content: `
+      <h1>Everything Is Everything</h1>
+      <p style="font-family: 'Space Mono'; font-size: 0.9rem; color: var(--crimson); text-transform: uppercase; margin-bottom: 4rem;">Minenhle Langa · Volume I</p>
+      
+      <h2>I. The Geometry of Reality</h2>
+      <p>Begin with a simple observation: no matter what scale of reality you examine, you find the exact same structural patterns. The branching of a river delta mirrors the branching of the bronchial tree. The spiral of a galaxy mirrors the spiral of a nautilus shell. The electrical discharge of a lightning bolt mirrors the neural branching of the cerebral cortex.</p>
+      <p>These are not coincidences of aesthetic taste. They are structural signatures.</p>
+      
+      <div class="pullquote">
+        "The universe is not the room you are standing in. It is the standing, and the room, and the one who stands — all at once."
+      </div>
+
+      <h2>II. The 11/2 Master Resonance</h2>
+      <p>Through the precise application of Vortex Math and digital root addition, we observe that the geometry of the universe is not silent. It vibrates. The absolute center of this evolutionary trajectory rests upon the Master Number 11/2 — the vibrational bridge translating pure cosmic impulse into lived, psychological reality.</p>
+      
+      <div class="paywall-blur">
+        <div class="blurred">
+          <p>When you align your psychological geometry with this 11/2 resonance, the distinction between observer and observed collapses entirely. You cease to be a biological entity reacting to a cold universe, and instead become the active antenna through which the universe broadcasts its own self-awareness. The implications for human consciousness are absolute. There is no separation. Everything is everything, recursively iterating downward into the subatomic and upward into the galactic...</p>
+          <p>Further exploration of the holographic bound establishes that the maximal information encodable on a surface of area A is directly tied to this vibrational frequency.</p>
+        </div>
+        <div class="paywall-overlay">
+          <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 2rem; margin-bottom: 1rem;">Unlock the Remaining 362 Pages</h3>
+          <p style="color: var(--muted); margin-bottom: 2rem; text-align: center;">This transmission is structurally locked. Acquire the paper or subscribe to continue reading.</p>
+          <button class="btn-primary" onclick="checkout('https://buy.stripe.com/test_paper_1')">Unlock Paper ($4.99)</button>
+        </div>
+      </div>
+    `
   },
   tir: {
     title: 'Thoughts + Ideas = Reality',
-    body: `<h2>Volume II: The Generative Engine</h2><p>This volume spans 366 pages, detailing the psychological mechanics of creation. What follows is the opening excerpt.</p><p>Rather than asking "why does experience feel like something?" we must ask "what does experience do?" The proposal of this 366-page volume is that consciousness is not merely an observer of reality. It is a generator of it.</p><p>A thought reports the present state of the system. An idea proposes a state the system has not yet actualised. The combination of thought and idea is the moment of collapse. The thought meets the idea and the result is an actualisation: the world, right now, as you are finding it.</p><p style="text-align:center; color: var(--white); font-style: italic; margin-top: 3rem;">— Remaining 362 pages locked. Secure hardcopy to continue reading. —</p>`
+    url: 'https://buy.stripe.com/test_paper_2',
+    content: `
+      <h1>Thoughts + Ideas = Reality</h1>
+      <p style="font-family: 'Space Mono'; font-size: 0.9rem; color: var(--crimson); text-transform: uppercase; margin-bottom: 4rem;">Minenhle Langa · Volume II</p>
+      
+      <h2>I. The Question Behind All Questions</h2>
+      <p>Why does experience feel like something? This question — what philosophers call the "hard problem of consciousness" — has resisted explanation by every scientific framework so far deployed against it. We can describe the neural correlates of any experience in extraordinary detail. We cannot explain why there is something it is like to have that experience, rather than the neural correlates proceeding in the dark.</p>
+      
+      <h2>II. The Generative Engine</h2>
+      <p>This volume approaches the question differently. Rather than asking "why does experience feel like something?" it asks "what does experience do?"</p>
+      <p>The proposal is that experience — consciousness — is not merely an observer of reality. It is a generator of it. A thought reports the present state of the system. An idea proposes a state the system has not yet actualised. The combination of thought and idea is the moment of quantum collapse.</p>
+      
+      <div class="paywall-blur">
+        <div class="blurred">
+          <p>The thought meets the idea and the result is an actualisation: the physical world, right now, exactly as you are finding it. If you wish to alter the generated reality, you cannot attack the physical output. You must alter the algorithmic input. You must change the thought, and combine it with a higher-frequency idea.</p>
+          <p>This is not philosophy. This is psychological physics. The human mind is a reality-rendering engine.</p>
+        </div>
+        <div class="paywall-overlay">
+          <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 2rem; margin-bottom: 1rem;">Unlock the Remaining 362 Pages</h3>
+          <p style="color: var(--muted); margin-bottom: 2rem; text-align: center;">This transmission is structurally locked. Acquire the paper or subscribe to continue reading.</p>
+          <button class="btn-primary" onclick="checkout('https://buy.stripe.com/test_paper_2')">Unlock Paper ($4.99)</button>
+        </div>
+      </div>
+    `
   }
 };
 
+let currentPaperKey = null;
+
 function openPaper(key) {
-  const p = papers[key];
-  document.getElementById('paper-body-content').innerHTML = `
-    <h1 style="font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; font-weight: 300; margin-bottom: 2rem; color: var(--white);">${p.title}</h1>
-    <div class="paper-body">${p.body}</div>
-  `;
+  currentPaperKey = key;
+  document.getElementById('modal-doc-title').innerText = "Viewing: " + papers[key].title;
+  document.getElementById('paper-text-container').innerHTML = papers[key].content;
   document.getElementById('paper-modal').classList.add('active');
   document.body.style.overflow = 'hidden';
 }
@@ -448,6 +407,14 @@ function openPaper(key) {
 function closePaper() {
   document.getElementById('paper-modal').classList.remove('active');
   document.body.style.overflow = '';
+  currentPaperKey = null;
+}
+
+// Client-side PDF Generation via Print CSS
+function generatePDF() {
+  if (!currentPaperKey) return;
+  alert("To save as a PDF:\n\n1. The browser print dialog will open.\n2. Change the 'Destination' to 'Save as PDF'.\n3. The layout is pre-formatted for academic printing.\n\nNote: Only the unlocked excerpt will be printed. Purchase the Scholar Tier for the full unredacted PDF downloads.");
+  window.print();
 }
 </script>
 </body>
