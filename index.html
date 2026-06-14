@@ -18,6 +18,9 @@
     --muted: #a0a0a5;
     --faint: rgba(255,255,255,0.08);
     --border: rgba(217, 4, 41, 0.2);
+    /* Oracle specific */
+    --lapis: #1a2b4c; 
+    --lapis-bright: #2d4a82;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -30,7 +33,6 @@
     font-family: 'Inter', sans-serif;
     font-weight: 400;
     overflow-x: hidden;
-    /* Scaled up font for deep reading and mobile interaction */
     font-size: 1.15rem; 
     line-height: 1.85;
   }
@@ -51,11 +53,11 @@
     border-bottom: 1px solid var(--faint); transition: all 0.4s ease;
   }
   .nav-logo { font-family: 'Space Mono', monospace; font-size: 1.2rem; font-weight: 700; letter-spacing: 0.15em; color: var(--crimson); text-transform: uppercase; text-decoration: none; }
-  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-  .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s ease; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s ease; }
   .nav-links a:hover { color: var(--crimson); }
   
-  .btn-nav { padding: 0.6rem 1.4rem; font-family: 'Space Mono', monospace; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white); border: 1px solid var(--crimson); background: transparent; cursor: pointer; transition: 0.3s; }
+  .btn-nav { padding: 0.6rem 1.4rem; font-family: 'Space Mono', monospace; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white); border: 1px solid var(--crimson); background: transparent; cursor: pointer; transition: 0.3s; text-decoration: none; }
   .btn-nav:hover { background: var(--crimson); }
 
   /* === HERO === */
@@ -86,6 +88,41 @@
   .product-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--faint); padding-top: 1.5rem; }
   .product-price { font-family: 'Space Mono', monospace; font-size: 1.5rem; color: var(--white); }
 
+  /* === SOUL GAMES === */
+  #soul-games { padding: 8rem 2rem; max-width: 1200px; margin: 0 auto; background: var(--deep); border-top: 1px solid var(--faint); }
+  .games-intro { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-style: italic; color: var(--muted); max-width: 700px; margin: 1.5rem 0 4rem; line-height: 1.7; }
+  .games-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+  
+  .game-card { background: var(--cosmos); border: 1px solid var(--faint); padding: 3rem 2.5rem; transition: all 0.4s; cursor: pointer; position: relative; }
+  .game-card:hover { border-color: var(--crimson); background: var(--crimson-dim); transform: translateY(-5px); }
+  .game-icon { font-size: 2.5rem; margin-bottom: 1.5rem; display: block; color: var(--crimson); }
+  .game-name { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; margin-bottom: 0.8rem; font-weight: 300; color: var(--white); }
+  .game-desc { font-size: 0.95rem; color: var(--muted); line-height: 1.8; margin-bottom: 2rem; }
+  .game-play-btn { font-family: 'Space Mono', monospace; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--white); background: transparent; border: 1px solid var(--crimson); padding: 0.8rem 1.2rem; cursor: pointer; transition: all 0.3s; width: 100%; }
+  .game-card:hover .game-play-btn { background: var(--crimson); }
+
+  /* === THE BLUE DECK ORACLE === */
+  #oracle { padding: 8rem 2rem; background: linear-gradient(to bottom, var(--cosmos), var(--void)); border-top: 1px solid var(--faint); text-align: center; }
+  .oracle-container { max-width: 1000px; margin: 0 auto; }
+  .oracle-title { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; color: var(--white); margin-bottom: 1rem; font-weight: 300; }
+  .oracle-sub { font-size: 1.15rem; color: var(--muted); max-width: 650px; margin: 0 auto 3rem; line-height: 1.8; }
+  
+  .card-container { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 3rem; perspective: 1000px; }
+  .tarot-card { width: 180px; height: 290px; position: relative; transition: transform 0.8s; transform-style: preserve-3d; cursor: pointer; }
+  .tarot-card.flipped { transform: rotateY(180deg); }
+  
+  .card-face { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 8px; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 1.2rem; text-align: center; border: 1px solid var(--faint); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+  .card-back { background: repeating-linear-gradient(45deg, var(--lapis-bright), var(--lapis-bright) 10px, var(--lapis) 10px, var(--lapis) 20px); border: 1px solid var(--crimson); }
+  .card-back::after { content: '✧'; font-size: 2.5rem; color: var(--white); opacity: 0.6; }
+  
+  .card-front { background: var(--cosmos); transform: rotateY(180deg); border: 1px solid var(--crimson); }
+  .card-name { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--white); margin-bottom: 1rem; border-bottom: 1px solid var(--faint); padding-bottom: 0.5rem; width: 100%; }
+  .card-keyword { font-family: 'Space Mono', monospace; font-size: 0.65rem; color: var(--crimson); text-transform: uppercase; letter-spacing: 0.1em; }
+
+  #reading-output { background: rgba(217, 4, 41, 0.05); border-left: 2px solid var(--crimson); padding: 2.5rem; font-size: 1.15rem; line-height: 1.9; color: var(--white); max-width: 800px; margin: 0 auto; text-align: left; display: none; }
+  #reading-output p { margin-bottom: 1.2rem; }
+  .tea-alert { color: var(--crimson); font-family: 'Space Mono', monospace; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 1.2rem; display: block; }
+
   /* === STRIPE MEMBERSHIP STRIP === */
   #memberships { background: var(--cosmos); padding: 8rem 2rem; border-top: 1px solid var(--faint); }
   .membership-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; }
@@ -105,7 +142,7 @@
   .tier-card.pro .tier-btn { background: var(--crimson); border-color: var(--crimson); }
   .tier-btn:hover { background: var(--white); color: var(--void); border-color: var(--white); }
 
-  /* === PAPER READING MODAL (LARGE TEXT) === */
+  /* === PAPER READING MODAL === */
   #paper-modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(5,5,5,0.98); z-index: 1000; overflow-y: auto; opacity: 0; transition: opacity 0.3s ease; }
   #paper-modal.active { display: block; opacity: 1; }
   
@@ -116,7 +153,7 @@
   .chapter-nav { border-left: 2px solid var(--crimson); padding-left: 2rem; margin-bottom: 4rem; }
   .chapter-nav h4 { font-family: 'Space Mono', monospace; font-size: 0.85rem; color: var(--crimson); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
   
-  .paper-text { font-size: 1.25rem; line-height: 1.9; color: rgba(255,255,255,0.85); } /* SCALED UP FOR MOBILE READING */
+  .paper-text { font-size: 1.25rem; line-height: 1.9; color: rgba(255,255,255,0.85); }
   .paper-text h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 6vw, 4.5rem); font-weight: 300; line-height: 1.1; margin-bottom: 1.5rem; color: var(--white); }
   .paper-text h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 300; margin: 4rem 0 1.5rem; color: var(--crimson); border-bottom: 1px solid var(--faint); padding-bottom: 1rem; }
   .paper-text p { margin-bottom: 2rem; }
@@ -126,7 +163,21 @@
   .paywall-blur .blurred { filter: blur(6px); opacity: 0.4; pointer-events: none; }
   .paywall-overlay { position: absolute; bottom: 0; left: 0; right: 0; height: 100%; background: linear-gradient(to bottom, transparent, var(--void) 80%); display: flex; flex-direction: column; justify-content: flex-end; align-items: center; padding-bottom: 4rem; }
 
-  /* === PRINT STYLES FOR PDF GENERATION === */
+  /* === GAME MODAL === */
+  .game-modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(5,5,5,0.98); z-index: 1000; align-items: center; justify-content: center; backdrop-filter: blur(10px); }
+  .game-modal-overlay.active { display: flex; }
+  .game-modal-box { background: var(--deep); border: 1px solid var(--crimson-mid); max-width: 700px; width: 90%; padding: 4rem 3rem; position: relative; max-height: 85vh; overflow-y: auto; }
+  .game-modal-close { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; color: var(--muted); font-size: 1.5rem; cursor: pointer; transition: color 0.3s; }
+  .game-modal-close:hover { color: var(--crimson); }
+  .game-modal-title { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; margin-bottom: 0.5rem; font-weight: 300; color: var(--white); }
+  .game-modal-sub { font-size: 0.9rem; color: var(--muted); margin-bottom: 3rem; letter-spacing: 0.1em; }
+  .game-question { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-style: italic; line-height: 1.5; margin-bottom: 2.5rem; color: var(--white); }
+  .game-options { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem; }
+  .game-option { background: var(--cosmos); border: 1px solid var(--faint); color: var(--white); padding: 1.2rem 1.5rem; text-align: left; font-family: 'Inter', sans-serif; font-size: 1rem; cursor: pointer; transition: all 0.3s; }
+  .game-option:hover { border-color: var(--crimson); background: var(--crimson-dim); }
+  .game-reflection { background: var(--crimson-dim); border-left: 2px solid var(--crimson); padding: 1.5rem; font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-style: italic; line-height: 1.7; display: none; color: var(--white); margin-bottom: 2rem; }
+  
+  /* === PRINT STYLES FOR PDF === */
   @media print {
     body * { visibility: hidden; }
     #paper-modal, #paper-modal * { visibility: visible; }
@@ -142,8 +193,10 @@
     #hero { padding: 6rem 1.5rem; }
     .hero-buttons { flex-direction: column; width: 100%; }
     .btn-primary, .btn-ghost { width: 100%; }
-    #commerce, #memberships { padding: 5rem 1.5rem; }
-    .paper-text { font-size: 1.15rem; } /* Slightly adjusted for very small screens, still large */
+    #commerce, #memberships, #soul-games, #oracle { padding: 5rem 1.5rem; }
+    .paper-text { font-size: 1.15rem; } 
+    .game-modal-box { padding: 3rem 1.5rem; }
+    .game-question { font-size: 1.4rem; }
   }
 </style>
 </head>
@@ -153,18 +206,23 @@
 
 <nav>
   <a href="#" class="nav-logo">SHAKETHEPLACE</a>
-  <div style="display: flex; gap: 1rem;">
-    <button class="btn-nav" onclick="document.getElementById('memberships').scrollIntoView()">Subscribe</button>
+  <div style="display: flex; gap: 1rem; align-items: center;">
+    <ul class="nav-links">
+      <li><a href="#commerce">Library</a></li>
+      <li><a href="#soul-games">Inquiries</a></li>
+      <li><a href="#oracle">Oracle</a></li>
+    </ul>
+    <a href="#memberships" class="btn-nav">Subscribe</a>
   </div>
 </nav>
 
 <section id="hero">
   <p class="hero-eyebrow">The Architecture of Consciousness</p>
   <h1 class="hero-title">The Universe Is Not<br>Outside of <em>You</em></h1>
-  <p class="hero-sub">Deep, multi-chapter cosmological masterworks mapping the fractal structures of reality. Pure research. No ads. No noise.</p>
+  <p class="hero-sub">Deep, multi-chapter cosmological masterworks and interactive structural logic mapping the fractal nature of reality. Break the bindings. Set yourself free.</p>
   <div class="hero-buttons">
     <a href="#commerce" class="btn-primary">Access the Library</a>
-    <a href="#memberships" class="btn-ghost">Become a Scholar</a>
+    <a href="#soul-games" class="btn-ghost">Begin Inquiry</a>
   </div>
 </section>
 
@@ -177,7 +235,7 @@
       <h2 class="product-title">Everything Is Everything</h2>
       <p class="product-desc">A deep-dive analysis proving the universe is a single, self-similar fractal reality system. Featuring the core geometry of Quintamazement.</p>
       <div style="display: flex; gap: 1rem; margin-bottom: 2rem;">
-        <button class="btn-ghost" style="padding: 0.6rem 1rem; font-size: 0.75rem; width: 100%;" onclick="openPaper('eie')">Read Excerpt</button>
+        <button class="btn-ghost" style="padding: 0.6rem 1rem; font-size: 0.75rem; width: 100%; border-color: var(--faint);" onclick="openPaper('eie')">Read Excerpt</button>
       </div>
       <div class="product-footer">
         <span class="product-price">$4.99</span>
@@ -190,7 +248,7 @@
       <h2 class="product-title">Thoughts + Ideas = Reality</h2>
       <p class="product-desc">An extensive psychological textbook formalising the exact mechanism by which thought and idea combine to collapse possibility into physical existence.</p>
       <div style="display: flex; gap: 1rem; margin-bottom: 2rem;">
-        <button class="btn-ghost" style="padding: 0.6rem 1rem; font-size: 0.75rem; width: 100%;" onclick="openPaper('tir')">Read Excerpt</button>
+        <button class="btn-ghost" style="padding: 0.6rem 1rem; font-size: 0.75rem; width: 100%; border-color: var(--faint);" onclick="openPaper('tir')">Read Excerpt</button>
       </div>
       <div class="product-footer">
         <span class="product-price">$4.99</span>
@@ -201,7 +259,7 @@
     <div class="product-card" style="border-color: var(--crimson); grid-column: 1 / -1; align-items: center; text-align: center;">
       <p class="product-tag">The Master Bundle</p>
       <h2 class="product-title">The Complete Cosmology PDF</h2>
-      <p class="product-desc" style="max-width: 600px;">Instantly download the complete, unredacted PDF editions of both masterworks, fully formatted for offline reading, annotation, and citation.</p>
+      <p class="product-desc" style="max-width: 600px;">Instantly download the complete, unredacted PDF editions of both masterworks, fully formatted for offline reading, annotation, and unplugging from the grid.</p>
       <div class="product-footer" style="width: 100%; max-width: 400px; justify-content: center; gap: 2rem; border-top: none;">
         <span class="product-price" style="font-size: 2rem;">$12.00</span>
         <button class="btn-primary" onclick="checkout('https://buy.stripe.com/test_bundle_pdf')">Secure Download</button>
@@ -209,20 +267,51 @@
     </div>
 
   </div>
+</section>
 
-  <p class="section-label reveal">Historical Archives</p>
-  <div class="grid-2 reveal" style="grid-template-columns: 1fr;">
-    <div class="product-card" style="flex-direction: row; align-items: center; gap: 3rem; flex-wrap: wrap;">
-      <div style="flex: 1; min-width: 300px;">
-        <p class="product-tag">Academic Module</p>
-        <h2 class="product-title">The Shaka Paradigm</h2>
-        <p class="product-desc" style="margin-bottom: 0;">A high-level educational module deconstructing 19th-century European colonisation narratives and mapping the tactical mastery of the Zulu Kingdom in KwaZulu-Natal. Bilingual notes included.</p>
-      </div>
-      <div style="text-align: right;">
-        <span class="product-price" style="display: block; font-size: 2.5rem; margin-bottom: 1rem;">$19.99</span>
-        <button class="btn-primary" onclick="checkout('https://buy.stripe.com/test_history_module')">Acquire Module</button>
-      </div>
+<section id="soul-games">
+  <p class="section-label">Interactive Logic</p>
+  <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; color: var(--white); font-weight: 300; margin-bottom: 1rem;">Soul Inquiries</h2>
+  <p class="games-intro">These are not puzzles. They are mirrors designed to bypass the matrix of your conditioned mind. The answers are already located where you are standing.</p>
+
+  <div class="games-grid">
+    <div class="game-card" onclick="openGame('mirror')">
+      <span class="game-icon">◈</span>
+      <h3 class="game-name">The Mirror Within</h3>
+      <p class="game-desc">A reflective mechanism to surface the part of you that already knows, before the mind begins explaining.</p>
+      <button class="game-play-btn">Initialize Inquiry</button>
     </div>
+
+    <div class="game-card" onclick="openGame('fractal')">
+      <span class="game-icon">∞</span>
+      <h3 class="game-name">The Fractal Walk</h3>
+      <p class="game-desc">Navigate a branching series of choices to notice which part of you makes the choice and why.</p>
+      <button class="game-play-btn">Enter the Pattern</button>
+    </div>
+
+    <div class="game-card" onclick="openGame('thought')">
+      <span class="game-icon">◎</span>
+      <h3 class="game-name">Thought Builder</h3>
+      <p class="game-desc">An interactive demonstration of Theory II. Watch reality generation occur in real time, inside you.</p>
+      <button class="game-play-btn">Construct Reality</button>
+    </div>
+  </div>
+</section>
+
+<section id="oracle">
+  <div class="oracle-container reveal">
+    <p class="section-label" style="justify-content: center;">Algorithmic Divination</p>
+    <h2 class="oracle-title">The Blue Deck Transmission</h2>
+    <p class="oracle-sub">Sit still. Focus your intent. Let the algorithm pull the frequencies. This is raw, unfiltered reality based on the cosmic architecture of where you stand right now.</p>
+    
+    <div style="margin-bottom: 3rem;">
+        <button class="btn-primary" onclick="drawCards()" id="draw-btn">Pull 3 Cards</button>
+    </div>
+
+    <div class="card-container" id="card-spread">
+      </div>
+
+    <div id="reading-output"></div>
   </div>
 </section>
 
@@ -282,10 +371,19 @@
   </div>
 </div>
 
+<div class="game-modal-overlay" id="game-modal">
+  <div class="game-modal-box">
+    <button class="game-modal-close" onclick="closeGame()">✕</button>
+    <h2 class="game-modal-title" id="game-modal-title">Soul Inquiry</h2>
+    <p class="game-modal-sub" id="game-modal-sub">Break the bindings.</p>
+    <div id="game-content"></div>
+  </div>
+</div>
+
 <script>
 // === STRIPE REDIRECT LOGIC ===
 function checkout(stripeUrl) {
-  // This simulates the redirect. In production, this goes straight to Stripe.
+  // Replace this alert with actual redirect when keys are ready
   alert("Redirecting to secure Stripe Checkout:\n\n" + stripeUrl);
   // window.location.href = stripeUrl; 
 }
@@ -303,7 +401,7 @@ function initVortex() {
       radius: Math.random() * 1200,
       speed: (Math.random() * 0.001) + 0.0002,
       size: Math.random() * 1.5 + 0.5,
-      color: Math.random() > 0.9 ? '#d90429' : '#ffffff'
+      color: Math.random() > 0.85 ? '#d90429' : '#ffffff'
     });
   }
 }
@@ -336,17 +434,16 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 const papers = {
   eie: {
     title: 'Everything Is Everything',
-    url: 'https://buy.stripe.com/test_paper_1',
     content: `
       <h1>Everything Is Everything</h1>
       <p style="font-family: 'Space Mono'; font-size: 0.9rem; color: var(--crimson); text-transform: uppercase; margin-bottom: 4rem;">Minenhle Langa · Volume I</p>
       
       <h2>I. The Geometry of Reality</h2>
-      <p>Begin with a simple observation: no matter what scale of reality you examine, you find the exact same structural patterns. The branching of a river delta mirrors the branching of the bronchial tree. The spiral of a galaxy mirrors the spiral of a nautilus shell. The electrical discharge of a lightning bolt mirrors the neural branching of the cerebral cortex.</p>
+      <p>Begin with a simple observation: no matter what scale of reality you examine, you find the exact same structural patterns. The branching of a river delta mirrors the branching of the bronchial tree. The spiral of a galaxy mirrors the spiral of a nautilus shell.</p>
       <p>These are not coincidences of aesthetic taste. They are structural signatures.</p>
       
       <div class="pullquote">
-        "The universe is not the room you are standing in. It is the standing, and the room, and the one who stands — all at once."
+        "The matrix is not a computer program. It is the belief that the universe is outside of you."
       </div>
 
       <h2>II. The 11/2 Master Resonance</h2>
@@ -355,11 +452,10 @@ const papers = {
       <div class="paywall-blur">
         <div class="blurred">
           <p>When you align your psychological geometry with this 11/2 resonance, the distinction between observer and observed collapses entirely. You cease to be a biological entity reacting to a cold universe, and instead become the active antenna through which the universe broadcasts its own self-awareness. The implications for human consciousness are absolute. There is no separation. Everything is everything, recursively iterating downward into the subatomic and upward into the galactic...</p>
-          <p>Further exploration of the holographic bound establishes that the maximal information encodable on a surface of area A is directly tied to this vibrational frequency.</p>
         </div>
         <div class="paywall-overlay">
-          <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 2rem; margin-bottom: 1rem;">Unlock the Remaining 362 Pages</h3>
-          <p style="color: var(--muted); margin-bottom: 2rem; text-align: center;">This transmission is structurally locked. Acquire the paper or subscribe to continue reading.</p>
+          <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; margin-bottom: 1rem; color: var(--white);">Unlock the Remaining 362 Pages</h3>
+          <p style="color: var(--muted); margin-bottom: 2rem; text-align: center;">This transmission is structurally locked. Acquire the paper to break the binding.</p>
           <button class="btn-primary" onclick="checkout('https://buy.stripe.com/test_paper_1')">Unlock Paper ($4.99)</button>
         </div>
       </div>
@@ -367,16 +463,14 @@ const papers = {
   },
   tir: {
     title: 'Thoughts + Ideas = Reality',
-    url: 'https://buy.stripe.com/test_paper_2',
     content: `
       <h1>Thoughts + Ideas = Reality</h1>
       <p style="font-family: 'Space Mono'; font-size: 0.9rem; color: var(--crimson); text-transform: uppercase; margin-bottom: 4rem;">Minenhle Langa · Volume II</p>
       
       <h2>I. The Question Behind All Questions</h2>
-      <p>Why does experience feel like something? This question — what philosophers call the "hard problem of consciousness" — has resisted explanation by every scientific framework so far deployed against it. We can describe the neural correlates of any experience in extraordinary detail. We cannot explain why there is something it is like to have that experience, rather than the neural correlates proceeding in the dark.</p>
+      <p>Why does experience feel like something? This question has resisted explanation by every scientific framework so far deployed against it. We can describe the neural correlates of any experience in extraordinary detail. We cannot explain why there is something it is like to have that experience.</p>
       
       <h2>II. The Generative Engine</h2>
-      <p>This volume approaches the question differently. Rather than asking "why does experience feel like something?" it asks "what does experience do?"</p>
       <p>The proposal is that experience — consciousness — is not merely an observer of reality. It is a generator of it. A thought reports the present state of the system. An idea proposes a state the system has not yet actualised. The combination of thought and idea is the moment of quantum collapse.</p>
       
       <div class="paywall-blur">
@@ -385,8 +479,8 @@ const papers = {
           <p>This is not philosophy. This is psychological physics. The human mind is a reality-rendering engine.</p>
         </div>
         <div class="paywall-overlay">
-          <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 2rem; margin-bottom: 1rem;">Unlock the Remaining 362 Pages</h3>
-          <p style="color: var(--muted); margin-bottom: 2rem; text-align: center;">This transmission is structurally locked. Acquire the paper or subscribe to continue reading.</p>
+          <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; margin-bottom: 1rem; color: var(--white);">Unlock the Remaining 362 Pages</h3>
+          <p style="color: var(--muted); margin-bottom: 2rem; text-align: center;">This transmission is structurally locked. Acquire the paper to break the binding.</p>
           <button class="btn-primary" onclick="checkout('https://buy.stripe.com/test_paper_2')">Unlock Paper ($4.99)</button>
         </div>
       </div>
@@ -410,11 +504,130 @@ function closePaper() {
   currentPaperKey = null;
 }
 
-// Client-side PDF Generation via Print CSS
 function generatePDF() {
   if (!currentPaperKey) return;
-  alert("To save as a PDF:\n\n1. The browser print dialog will open.\n2. Change the 'Destination' to 'Save as PDF'.\n3. The layout is pre-formatted for academic printing.\n\nNote: Only the unlocked excerpt will be printed. Purchase the Scholar Tier for the full unredacted PDF downloads.");
+  alert("To save as a PDF:\n\n1. The browser print dialog will open.\n2. Change 'Destination' to 'Save as PDF'.\n\nNote: Only the unlocked excerpt will print. Purchase the Scholar Tier for the full unredacted PDF downloads.");
   window.print();
+}
+
+// === SOUL GAMES LOGIC ===
+const games = {
+  mirror: {
+    title: 'The Mirror Within', sub: 'Sit quietly. Answer honestly. Nothing is wrong.',
+    questions: [
+      { q: 'Right now, in this moment, before you form an opinion about it — what is the quality of your awareness?', options: ['Busy, scattered', 'Quiet, but I notice the quiet', 'Heavy, like something is present', 'Open, like a space with no walls'],
+        reflections: ['Busyness is not the opposite of presence. Notice the one who notices the busyness.', 'The noticing of quiet is itself a form of quiet. You are already there.', 'Heaviness is often what depth feels like before it becomes clear.', 'An open space with no walls is the condition from which everything emerges.'] }
+    ]
+  },
+  fractal: {
+    title: 'The Fractal Walk', sub: 'Follow the pattern.',
+    questions: [
+      { q: 'You are standing at the boundary of what you believe is possible. Do you step toward it, or go deeper into the centre?', options: ['I step toward the boundary', 'I go deeper into the centre'],
+        reflections: ['The boundary is just the edge of the current map. Beyond it: the same pattern, at a larger scale.', 'The centre is where the fractal is most dense. Everything at the boundary is already present at the centre.'] }
+    ]
+  },
+  thought: {
+    title: 'Thought Builder', sub: 'Watch Theory II operate inside you.',
+    questions: [
+      { q: 'Choose a thought — something you believe, right now, about who you are:', options: ['I am searching', 'I already have what I need', 'I am becoming', 'I am more than my story'],
+        reflections: ['Now add an idea to it: what if the thing you are searching for is the searching itself?', 'Notice the resistance to this thought. The resistance is the old matrix fighting the new code.', 'Becoming is the most honest description of a living system.', 'The part of you that is more than the story is the part reading these words right now.'] }
+    ]
+  }
+};
+
+let currentGame = null;
+let currentQ = 0;
+
+function openGame(key) {
+  currentGame = games[key];
+  currentQ = 0;
+  document.getElementById('game-modal-title').textContent = currentGame.title;
+  document.getElementById('game-modal-sub').textContent = currentGame.sub;
+  renderQuestion();
+  document.getElementById('game-modal').classList.add('active');
+}
+
+function closeGame() {
+  document.getElementById('game-modal').classList.remove('active');
+  currentGame = null;
+}
+
+function renderQuestion() {
+  if (!currentGame || currentQ >= currentGame.questions.length) {
+    document.getElementById('game-content').innerHTML = `<div style="text-align:center; padding: 2rem 0;"><p style="font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-style:italic; color:var(--crimson); margin-bottom:1rem;">You have reached the centre.</p><button class="btn-ghost" onclick="closeGame()">Close & Sit With It</button></div>`;
+    return;
+  }
+  const q = currentGame.questions[currentQ];
+  document.getElementById('game-content').innerHTML = `
+    <p class="game-question">${q.q}</p>
+    <div class="game-options">${q.options.map((o, i) => `<button class="game-option" onclick="selectOption(${i})">${o}</button>`).join('')}</div>
+    <div class="game-reflection" id="reflection-box"></div>
+    <button class="btn-primary" id="next-btn" style="display:none; margin-top:2rem;" onclick="nextQuestion()">Continue →</button>
+  `;
+}
+
+function selectOption(i) {
+  document.querySelectorAll('.game-option').forEach((b, idx) => {
+    b.style.opacity = idx === i ? '1' : '0.4';
+    b.style.borderColor = idx === i ? 'var(--crimson)' : 'var(--faint)';
+  });
+  const ref = document.getElementById('reflection-box');
+  ref.textContent = currentGame.questions[currentQ].reflections[i];
+  ref.style.display = 'block';
+  document.getElementById('next-btn').style.display = 'inline-block';
+}
+
+function nextQuestion() { currentQ++; renderQuestion(); }
+
+// === BLUE DECK TAROT LOGIC ===
+const tarotDeck = [
+  { name: "The Ancestor", keyword: "Root / Grounding", meaning: "You are trying to build the roof while the foundation is floating. Ground your energy." },
+  { name: "The Vortex", keyword: "11/2 Master Resonance", meaning: "High frequency incoming. The universe is speaking in numbers and synchronicities. Stop ignoring the signs." },
+  { name: "Phi (Golden Ratio)", keyword: "Perfect Expansion", meaning: "Everything is unfolding in the exact mathematical proportion it needs to. Stop forcing things." },
+  { name: "The Tower of Illusion", keyword: "Matrix Destruction", meaning: "Something you thought was stable is collapsing. Good riddance. It was built on a lie. Let it burn." },
+  { name: "The High Priestess", keyword: "Deep Intuition", meaning: "Stop asking for advice. Your intuition has been screaming at you. Sit in silence." },
+  { name: "The Void", keyword: "Infinite Potential", meaning: "You are standing in the empty space between chapters. Do not panic in the dark. Generate." }
+];
+
+function drawCards() {
+  const container = document.getElementById('card-spread');
+  const output = document.getElementById('reading-output');
+  const btn = document.getElementById('draw-btn');
+  btn.innerText = "Reshuffling the Cosmos..."; btn.disabled = true;
+  container.innerHTML = ''; output.style.display = 'none';
+
+  let shuffled = tarotDeck.sort(() => 0.5 - Math.random());
+  let drawn = shuffled.slice(0, 3);
+
+  drawn.forEach((card, index) => {
+    setTimeout(() => {
+      container.innerHTML += `
+        <div class="tarot-card" id="card-${index}">
+          <div class="card-face card-back"></div>
+          <div class="card-face card-front">
+            <div class="card-name">${card.name}</div>
+            <div class="card-keyword">${card.keyword}</div>
+          </div>
+        </div>`;
+    }, index * 200);
+  });
+
+  setTimeout(() => {
+    for (let i = 0; i < 3; i++) { setTimeout(() => { document.getElementById(`card-${i}`).classList.add('flipped'); }, i * 400); }
+    setTimeout(() => { generateReading(drawn); btn.innerText = "Pull Again"; btn.disabled = false; }, 1500);
+  }, 800);
+}
+
+function generateReading(cards) {
+  const output = document.getElementById('reading-output');
+  output.innerHTML = `
+    <span class="tea-alert">✦ The Algorithm Speaks ✦</span>
+    <p><strong>Past/Root: ${cards[0].name}.</strong> ${cards[0].meaning}</p>
+    <p><strong>Present/Action: ${cards[1].name}.</strong> ${cards[1].meaning}</p>
+    <p><strong>Future/Potential: ${cards[2].name}.</strong> ${cards[2].meaning}</p>
+  `;
+  output.style.display = 'block';
+  output.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 </script>
 </body>
